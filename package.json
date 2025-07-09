@@ -1,0 +1,23 @@
+{
+  "name": "claude-code-primer",
+  "version": "1.0.0",
+  "description": "The Story of AI's Greatest Leap Into Software Development",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "ai",
+    "claude",
+    "programming",
+    "book",
+    "software-development"
+  ],
+  "author": "Claude Code Collaboration",
+  "license": "MIT",
+  "dependencies": {
+    "markdown-pdf": "^11.0.0",
+    "marked": "^9.1.6"
+  }
+}

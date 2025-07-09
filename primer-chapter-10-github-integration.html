@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 10: GitHub and CI/CD Integration | Claude Code Primer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background-color: #f8f9fa;
+        }
+        
+        .banner {
+            background: linear-gradient(135deg, #6b46c1 0%, #9333ea 100%);
+            color: white;
+            padding: 3rem 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .banner-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .banner h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .banner .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+        
+        .banner .fact-check-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .banner .fact-check-badge::before {
+            content: "✓";
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .navigation {
+            background: white;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #6b46c1;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #9333ea;
+        }
+        
+        .content {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+        }
+        
+        .content h2 {
+            color: #6b46c1;
+            margin: 3rem 0 1.5rem;
+            font-size: 2rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+        
+        .content h2::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(135deg, #6b46c1 0%, #9333ea 100%);
+            border-radius: 2px;
+        }
+        
+        .content h3 {
+            color: #6b46c1;
+            margin: 2rem 0 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+            color: #34495e;
+        }
+        
+        .content ul, .content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+        
+        .content li {
+            margin-bottom: 0.5rem;
+            color: #34495e;
+        }
+        
+        .quote {
+            font-style: italic;
+            color: #6b46c1;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            background: rgba(107, 70, 193, 0.05);
+            border-left: 4px solid #6b46c1;
+            border-radius: 0.5rem;
+        }
+        
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            line-height: 1.4;
+        }
+        
+        .code-block pre {
+            margin: 0;
+        }
+        
+        .yaml-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            line-height: 1.4;
+        }
+        
+        .yaml-block pre {
+            margin: 0;
+        }
+        
+        .github-comment {
+            background: #f6f8fa;
+            border: 1px solid #d1d5da;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .github-comment .comment-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #24292e;
+        }
+        
+        .github-comment .comment-header .bot-badge {
+            background: #6b46c1;
+            color: white;
+            padding: 0.1rem 0.5rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+        }
+        
+        .pr-box {
+            background: white;
+            border: 1px solid #e1e4e8;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+            overflow: hidden;
+        }
+        
+        .pr-header {
+            background: #f6f8fa;
+            padding: 1rem;
+            border-bottom: 1px solid #e1e4e8;
+            font-weight: 600;
+            color: #24292e;
+        }
+        
+        .pr-content {
+            padding: 1rem;
+        }
+        
+        .pr-content h4 {
+            color: #24292e;
+            margin-bottom: 0.5rem;
+        }
+        
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .checklist li {
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .checklist li::before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+        }
+        
+        .deployment-analysis {
+            background: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .deployment-analysis h4 {
+            color: #2e7d32;
+            margin-bottom: 0.5rem;
+        }
+        
+        .testimonial {
+            background: rgba(107, 70, 193, 0.05);
+            border-left: 4px solid #9333ea;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0.5rem;
+            font-style: italic;
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 1rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-nav a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-nav a:hover {
+            opacity: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .banner h1 {
+                font-size: 2rem;
+            }
+            
+            .banner .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .content h2 {
+                font-size: 1.5rem;
+            }
+            
+            .nav-content {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <div class="banner-content">
+            <h1>Chapter 10: GitHub and CI/CD Integration</h1>
+            <p class="subtitle">AI in the Development Pipeline</p>
+            <span class="fact-check-badge">Workflow Automation</span>
+        </div>
+    </div>
+    
+    <nav class="navigation">
+        <div class="nav-content">
+            <div class="nav-links">
+                <a href="primer-chapter-09-security-architecture.html">← Chapter 9</a>
+                <a href="index.html">Contents</a>
+                <a href="primer-chapter-11-case-studies.html">Chapter 11 →</a>
+            </div>
+            <div class="nav-links">
+                <a href="#workflows">Workflows</a>
+                <a href="https://github.com/Anthropic/claude-code" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="content">
+        <div class="quote">
+            "The best automation is invisible automation. It should feel like the system is reading your mind, not following your commands."
+        </div>
+        
+        <p>Maria stared at the GitHub issue: "Add dark mode support to the application." In the old days, this would mean hours of planning, CSS variable setup, theme switching logic, testing across components, and careful review. But this wasn't the old days.</p>
+        
+        <p>She typed a simple comment: "@claude-code Can you implement this?"</p>
+        
+        <p>Within minutes, Claude Code had analyzed the codebase, understood the design system, created a comprehensive implementation plan, and opened a pull request. The PR included not just the dark mode implementation, but tests, documentation updates, and even screenshots showing the result.</p>
+        
+        <p>But here's the remarkable part: the code followed the project's conventions perfectly. It used the existing color system, maintained the component architecture, and even added thoughtful touches like respecting system preferences and smooth transitions.</p>
+        
+        <p>This is the power of AI integrated into the development pipeline—not replacing developers, but amplifying their intent into implementation.</p>
+        
+        <h2>The GitHub Revolution</h2>
+        
+        <p>GitHub Actions changed how we think about automation. Claude Code changes how we think about GitHub Actions. The integration isn't just about running commands—it's about bringing intelligence to every part of the development workflow.</p>
+        
+        <h3>The Installation Dance</h3>
+        
+        <p>Setting up Claude Code for GitHub is surprisingly elegant:</p>
+        
+        <div class="yaml-block">
+            <pre># .github/workflows/claude-code.yml
+name: Claude Code Assistant
+
+on:
+  issues:
+    types: [labeled]
+  issue_comment:
+    types: [created]
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  claude-assist:
+    if: contains(github.event.label.name, 'claude-code') || 
+        contains(github.event.comment.body, '@claude-code')
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Claude Code Action
+        uses: anthropic/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}</pre>
+        </div>
+        
+        <p>But this simple configuration enables profound capabilities.</p>
+        
+        <h2 id="workflows">Issue to Implementation</h2>
+        
+        <p>The most magical integration is issue-to-pull-request conversion. Here's how it works:</p>
+        
+        <h3>The Trigger</h3>
+        
+        <p>When an issue is labeled with <code>claude-code</code> or someone mentions <code>@claude-code</code>, the system awakens:</p>
+        
+        <div class="github-comment">
+            <div class="comment-header">
+                Issue: Add data export functionality
+            </div>
+            <h4>Description</h4>
+            <p>Users need to export their data in CSV and JSON formats.</p>
+            
+            <h4>Requirements</h4>
+            <ul>
+                <li>Support filtering by date range</li>
+                <li>Include all user-generated content</li>
+                <li>Respect privacy settings</li>
+                <li>Generate download links that expire</li>
+            </ul>
+            
+            <p>@claude-code Can you implement this?</p>
+        </div>
+        
+        <h3>The Analysis</h3>
+        
+        <p>Claude Code doesn't just read the issue—it understands the context:</p>
+        
+        <ol>
+            <li><strong>Codebase Analysis</strong>: Examines existing data models and export patterns</li>
+            <li><strong>Architecture Understanding</strong>: Identifies where the feature fits</li>
+            <li><strong>Convention Detection</strong>: Learns project-specific patterns</li>
+            <li><strong>Dependency Checking</strong>: Ensures required libraries are available</li>
+        </ol>
+        
+        <h3>The Implementation</h3>
+        
+        <p>What happens next feels like magic but is actually systematic:</p>
+        
+        <div class="code-block">
+            <pre>// Claude Code's Thought Process (visible in PR description)
+/*
+1. Analyzed existing data export patterns in reports module
+2. Identified User, Post, and Comment models need export
+3. Found existing CSV utility in lib/formatters
+4. Detected privacy flags in User model
+5. Noticed project uses job queue for long operations
+*/
+
+// Generated Implementation
+export class DataExportService {
+  constructor(
+    private readonly db: DatabaseService,
+    private readonly queue: QueueService,
+    private readonly storage: StorageService
+  ) {}
+
+  async requestExport(userId: string, options: ExportOptions): Promise&lt;ExportJob&gt; {
+    // Validates request
+    this.validateExportRequest(userId, options);
+    
+    // Queues job for processing
+    const job = await this.queue.enqueue('data-export', {
+      userId,
+      format: options.format,
+      dateRange: options.dateRange,
+      includeTypes: options.includeTypes
+    });
+    
+    return job;
+  }
+  
+  // ... complete implementation following project patterns
+}</pre>
+        </div>
+        
+        <h3>The Pull Request</h3>
+        
+        <p>The PR Claude Code creates is comprehensive:</p>
+        
+        <div class="pr-box">
+            <div class="pr-header">
+                🤖 Claude Code Implementation
+            </div>
+            <div class="pr-content">
+                <h4>Summary</h4>
+                <p>Implemented data export functionality as requested in #456</p>
+                
+                <h4>Changes Made</h4>
+                <ul class="checklist">
+                    <li>Created <code>DataExportService</code> for handling export requests</li>
+                    <li>Added API endpoints for triggering exports</li>
+                    <li>Implemented CSV and JSON formatters</li>
+                    <li>Added privacy filtering logic</li>
+                    <li>Created job queue handler for async processing</li>
+                    <li>Implemented secure, expiring download links</li>
+                    <li>Added comprehensive test suite</li>
+                    <li>Updated API documentation</li>
+                </ul>
+                
+                <h4>Technical Decisions</h4>
+                <ol>
+                    <li><strong>Async Processing</strong>: Large exports are processed via job queue to prevent timeouts</li>
+                    <li><strong>Streaming</strong>: Used streaming for large datasets to manage memory</li>
+                    <li><strong>Security</strong>: Download links use signed URLs with 24-hour expiration</li>
+                    <li><strong>Privacy</strong>: Respects user privacy settings and excludes private content</li>
+                </ol>
+                
+                <h4>Testing</h4>
+                <ul>
+                    <li>Unit tests: 42 tests, 100% coverage</li>
+                    <li>Integration tests: 8 scenarios tested</li>
+                    <li>Performance tested with 1M+ records</li>
+                </ul>
+            </div>
+        </div>
+        
+        <h2>Code Review Intelligence</h2>
+        
+        <p>Claude Code doesn't just write code—it reviews it intelligently:</p>
+        
+        <h3>Automated PR Reviews</h3>
+        
+        <div class="github-comment">
+            <div class="comment-header">
+                claude-code <span class="bot-badge">bot</span>
+            </div>
+            <h4>🔍 Claude Code Review</h4>
+            
+            <h4>Security Analysis ✅</h4>
+            <ul>
+                <li>No hardcoded secrets detected</li>
+                <li>Input validation properly implemented</li>
+                <li>SQL injection protections in place</li>
+            </ul>
+            
+            <h4>Performance Considerations ⚠️</h4>
+            <p><strong>Line 234</strong>: N+1 query detected in user loop</p>
+            <div class="code-block">
+                <pre>// Current
+for (const user of users) {
+  const posts = await db.posts.findByUser(user.id);
+}
+
+// Suggested
+const posts = await db.posts.findByUserIds(users.map(u => u.id));
+const postsByUser = groupBy(posts, 'userId');</pre>
+            </div>
+            
+            <h4>Code Quality 🎯</h4>
+            <ul>
+                <li>Follows project ESLint rules</li>
+                <li>Consistent with existing patterns</li>
+                <li>Good test coverage (92%)</li>
+            </ul>
+            
+            <h4>Suggestions 💡</h4>
+            <ol>
+                <li>Consider adding rate limiting to export endpoint</li>
+                <li>The date validation could use the existing <code>DateValidator</code> utility</li>
+                <li>Add metrics for monitoring export usage</li>
+            </ol>
+            
+            <h4>Verdict</h4>
+            <p>LGTM with minor suggestions. Great implementation! 🚀</p>
+        </div>
+        
+        <h3>Interactive Reviews</h3>
+        
+        <p>Reviewers can ask Claude Code questions directly in PR comments:</p>
+        
+        <div class="github-comment">
+            <div class="comment-header">Reviewer</div>
+            <p>@claude-code Can you explain the reasoning behind using a job queue here?</p>
+        </div>
+        
+        <div class="github-comment">
+            <div class="comment-header">
+                claude-code <span class="bot-badge">bot</span>
+            </div>
+            <p>Great question! I chose a job queue for several reasons:</p>
+            
+            <ol>
+                <li><strong>Large Dataset Handling</strong>: Some users have 100k+ records. Processing synchronously would cause HTTP timeouts.</li>
+                <li><strong>Resource Management</strong>: Export operations are CPU/memory intensive. Queueing prevents overwhelming the server during peak times.</li>
+                <li><strong>Retry Logic</strong>: If an export fails partway through, the job queue enables automatic retries.</li>
+                <li><strong>Progress Tracking</strong>: Users can check export status through the job ID.</li>
+                <li><strong>Existing Pattern</strong>: I noticed the project already uses job queues for report generation, maintaining consistency.</li>
+            </ol>
+            
+            <p>The tradeoff is added complexity, but given the requirements and existing patterns, it's the right choice for robustness.</p>
+        </div>
+        
+        <h2>CI/CD Pipeline Enhancement</h2>
+        
+        <p>Claude Code integrates deeply with continuous integration:</p>
+        
+        <h3>Smart Test Generation</h3>
+        
+        <div class="yaml-block">
+            <pre>- name: Generate Missing Tests
+  if: steps.coverage.outputs.percentage < 80
+  run: |
+    claude-code generate-tests \
+      --coverage-report=./coverage/lcov.info \
+      --target-coverage=90</pre>
+        </div>
+        
+        <h3>Performance Regression Detection</h3>
+        
+        <div class="deployment-analysis">
+            <h4>⚡ Performance Impact Analysis</h4>
+            
+            <h4>Bundle Size</h4>
+            <ul>
+                <li>Main bundle: +2.3KB (0.8% increase) ✅</li>
+                <li>Lazy loaded, no impact on initial load</li>
+            </ul>
+            
+            <h4>Runtime Performance</h4>
+            <ul>
+                <li>Export generation: O(n) complexity ✅</li>
+                <li>Memory usage scales linearly with data size</li>
+                <li>Streaming prevents memory spikes</li>
+            </ul>
+            
+            <h4>Database Impact</h4>
+            <ul>
+                <li>New indices added for efficient filtering</li>
+                <li>Query execution plans analyzed</li>
+                <li>No significant impact on existing queries</li>
+            </ul>
+            
+            <h4>Recommendations</h4>
+            <ul>
+                <li>Consider pagination for very large exports</li>
+                <li>Add caching for repeated exports</li>
+                <li>Monitor job queue depth in production</li>
+            </ul>
+        </div>
+        
+        <h2>Deployment Automation</h2>
+        
+        <p>Claude Code extends into deployment:</p>
+        
+        <div class="deployment-analysis">
+            <h4>🚀 Deployment Analysis</h4>
+            
+            <p><strong>Risk Assessment: LOW ✅</strong></p>
+            
+            <h4>Changes Summary</h4>
+            <ul>
+                <li>New feature (data export) - isolated functionality</li>
+                <li>No breaking changes to existing APIs</li>
+                <li>Database migrations are backward compatible</li>
+            </ul>
+            
+            <h4>Deployment Strategy</h4>
+            <p>Recommended: <strong>Standard Rolling Deployment</strong></p>
+            <ul>
+                <li>No feature flags needed (additive change)</li>
+                <li>No special migration steps</li>
+                <li>Can rollback without data loss</li>
+            </ul>
+            
+            <h4>Monitoring Points</h4>
+            <ul>
+                <li>Watch job queue depth</li>
+                <li>Monitor export endpoint response times</li>
+                <li>Track storage usage for exports</li>
+            </ul>
+            
+            <p><strong>Go/No-Go: GO ✅</strong></p>
+        </div>
+        
+        <h2>The CLAUDE.md File</h2>
+        
+        <p>Central to GitHub integration is the CLAUDE.md file:</p>
+        
+        <div class="code-block">
+            <pre># CLAUDE.md - Project Standards for Claude Code
+
+## Architecture
+- Follows Domain-Driven Design
+- Service layer for business logic
+- Repository pattern for data access
+
+## Coding Standards
+- TypeScript with strict mode
+- ESLint configuration in .eslintrc
+- Prettier for formatting
+
+## Testing Requirements
+- Minimum 80% coverage
+- Unit tests for all services
+- Integration tests for API endpoints
+
+## Common Patterns
+```typescript
+// Service pattern
+export class UserService {
+  constructor(private readonly repo: UserRepository) {}
+  // methods...
+}
+```
+
+## Git Conventions
+- Conventional commits
+- PR requires 2 approvals
+- Squash merge to main
+
+## Special Considerations
+- Healthcare data (HIPAA compliance required)
+- Rate limiting on all public endpoints
+- Audit logging for all data changes</pre>
+        </div>
+        
+        <p>This file ensures Claude Code follows project-specific conventions.</p>
+        
+        <h2>Real-World Success Stories</h2>
+        
+        <div class="testimonial">
+            <h4>The Startup Accelerator</h4>
+            <p>"We're a team of 3, but with Claude Code, we ship features like a team of 10. Issues become PRs in minutes, not days."</p>
+        </div>
+        
+        <div class="testimonial">
+            <h4>The Enterprise Migration</h4>
+            <p>"We used Claude Code to help migrate our monolith to microservices. It understood our patterns and helped split the codebase intelligently."</p>
+        </div>
+        
+        <div class="testimonial">
+            <h4>The Open Source Maintainer</h4>
+            <p>"Claude Code helps review PRs from contributors, ensuring consistent code quality without burning out maintainers."</p>
+        </div>
+        
+        <h2>Advanced Workflows</h2>
+        
+        <h3>Issue Templates with Claude Hints</h3>
+        
+        <div class="code-block">
+            <pre>---
+name: Feature Request
+about: Suggest a new feature
+labels: enhancement, claude-code-ready
+---
+
+## Feature Description
+[Describe the feature]
+
+## Claude Code Hints
+- Related files: [e.g., /src/services/]
+- Similar features: [e.g., data import]
+- Performance considerations: [any concerns]
+- Security requirements: [auth needed?]</pre>
+        </div>
+        
+        <h3>Scheduled Maintenance</h3>
+        
+        <div class="yaml-block">
+            <pre>on:
+  schedule:
+    - cron: '0 2 * * SUN'  # Weekly
+
+jobs:
+  maintenance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Weekly Code Health Check
+        run: |
+          claude-code health-check \
+            --check-dependencies \
+            --check-security \
+            --check-performance \
+            --create-issues</pre>
+        </div>
+        
+        <h2>The Philosophy of Integrated AI</h2>
+        
+        <p>The GitHub integration embodies key principles:</p>
+        
+        <h3>Amplification, Not Replacement</h3>
+        <p>Claude Code amplifies developer productivity without replacing human judgment.</p>
+        
+        <h3>Context-Aware Automation</h3>
+        <p>Every action considers the full context—codebase, conventions, and requirements.</p>
+        
+        <h3>Transparent Intelligence</h3>
+        <p>Claude Code explains its reasoning, making automation understandable.</p>
+        
+        <h3>Collaborative Development</h3>
+        <p>AI becomes a team member, not just a tool.</p>
+        
+        <h2>The New Development Flow</h2>
+        
+        <p>With Claude Code integrated into GitHub, the development flow transforms:</p>
+        
+        <ol>
+            <li><strong>Idea</strong> → Issue creation</li>
+            <li><strong>Issue</strong> → Claude Code implementation</li>
+            <li><strong>PR</strong> → Automated review + human oversight</li>
+            <li><strong>Merge</strong> → Intelligent deployment</li>
+            <li><strong>Monitor</strong> → Proactive issue detection</li>
+        </ol>
+        
+        <p>Each step enhanced by AI, but controlled by humans.</p>
+        
+        <div class="quote" style="margin-top: 3rem;">
+            <em>In the next chapter, we'll explore real-world case studies. From startups to enterprises, we'll see how different teams use Claude Code to transform their development process and achieve remarkable results.</em>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Claude Code Primer. All rights reserved.</p>
+            <nav class="footer-nav">
+                <a href="primer-chapter-09-security-architecture.html">Previous Chapter</a>
+                <a href="index.html">Contents</a>
+                <a href="primer-chapter-11-case-studies.html">Next Chapter</a>
+                <a href="https://github.com/Anthropic/claude-code" target="_blank">GitHub</a>
+                <a href="https://anthropic.com" target="_blank">Anthropic</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>

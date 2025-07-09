@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 2: The Transformer Revolution - Fact-Checked Version</title>
+    <style>
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            line-height: 1.8;
+            color: #2c3e50;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f7f4;
+        }
+        
+        .header-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 40px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        h1 {
+            color: white;
+            font-size: 2.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.3em;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+        
+        h2 {
+            color: #667eea;
+            margin-top: 40px;
+            font-size: 1.8em;
+            border-bottom: 2px solid #e8e3ff;
+            padding-bottom: 10px;
+        }
+        
+        .epigraph {
+            font-style: italic;
+            text-align: center;
+            margin: 40px 0;
+            color: #7c8490;
+            font-size: 1.1em;
+            padding: 0 40px;
+        }
+        
+        .key-concept {
+            background: linear-gradient(135deg, #f5f3ff 0%, #e8e3ff 100%);
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .math-note {
+            background: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .citation {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: normal;
+            font-size: 0.85em;
+            vertical-align: super;
+        }
+        
+        .citation:hover {
+            text-decoration: underline;
+        }
+        
+        .references {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e8e3ff;
+        }
+        
+        .references h2 {
+            color: #667eea;
+            border-bottom: none;
+        }
+        
+        .reference {
+            margin: 15px 0;
+            padding-left: 30px;
+            text-indent: -30px;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+        
+        .reference-number {
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .reference a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .reference a:hover {
+            text-decoration: underline;
+        }
+        
+        blockquote {
+            border-left: 3px solid #667eea;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #5a6c7d;
+            font-style: italic;
+        }
+        
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        ul, ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin: 10px 0;
+        }
+        
+        .technical-detail {
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+        
+        .emergence-box {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(253, 203, 110, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="header-banner">
+        <h1>Chapter 2: The Transformer Revolution</h1>
+        <div class="subtitle">Attention Is Indeed All You Need</div>
+    </div>
+    
+    <div class="content">
+        <div class="epigraph">
+            "In the beginning was the Word, and the Word was with Attention, and the Word was Attention."
+        </div>
+        
+        <p>Imagine you're at a cocktail party. Dozens of conversations swirl around you—discussions about politics, gossip about celebrities, technical debates about quantum computing. Yet somehow, miraculously, you can focus on the person in front of you while simultaneously maintaining awareness of the broader conversational landscape. When someone across the room mentions your name, your attention instantly shifts. When the person you're talking to references something said earlier, you recall it perfectly.</p>
+        
+        <p>This is attention. And in 2017<a href="#ref1" class="citation">[1]</a>, a group of researchers at Google realized that this mechanism—this ability to dynamically focus on what matters while maintaining global awareness—might be the key to teaching machines to truly understand language.</p>
+        
+        <p>They were about to change everything.</p>
+        
+        <h2>The Limits of Sequential Thinking</h2>
+        
+        <p>Before we can appreciate the transformer revolution, we need to understand what came before. Early language models were built on recurrent neural networks (RNNs)<a href="#ref2" class="citation">[2]</a>. These systems processed text like a person reading with a finger under each word—one token at a time, building understanding sequentially.</p>
+        
+        <p>Picture yourself reading this sentence word by word, forgetting everything except the last few words as you go. By the time you reach the end, the beginning has faded into a vague memory. This was the RNN's curse: the tyranny of sequential processing<a href="#ref3" class="citation">[3]</a>.</p>
+        
+        <p>Long Short-Term Memory networks (LSTMs)<a href="#ref4" class="citation">[4]</a> tried to solve this by adding a kind of notepad where important information could be written down and referenced later. But even this was limited. Like a student frantically scribbling notes during a lecture, LSTMs could only capture so much before important details were lost or overwritten<a href="#ref5" class="citation">[5]</a>.</p>
+        
+        <p>The fundamental problem was architectural. Sequential processing created an information bottleneck. The past was always viewed through the narrow lens of the present, and long-range dependencies—the connections between ideas separated by many words—were nearly impossible to maintain<a href="#ref6" class="citation">[6]</a>.</p>
+        
+        <h2>The Attention Breakthrough</h2>
+        
+        <p>Enter Ashish Vaswani and his colleagues. Their paper, "Attention Is All You Need,"<a href="#ref1" class="citation">[1]</a> proposed something radical: What if we abandoned sequential processing entirely? What if, instead of reading one word at a time, we could see all words simultaneously and learn which ones matter most for understanding each part of the text?</p>
+        
+        <p>This wasn't just an incremental improvement. It was a fundamental reimagining of how machines could process language.</p>
+        
+        <div class="key-concept">
+            <p>The key insight was deceptively simple. For any word in a sentence, three questions matter:</p>
+            <ol>
+                <li>What information am I looking for? (The Query)</li>
+                <li>What information is available? (The Keys)</li>
+                <li>What is the actual content of that information? (The Values)</li>
+            </ol>
+        </div>
+        
+        <p>Let me make this concrete. Consider the sentence: "The cat sat on the mat because it was tired."</p>
+        
+        <p>When processing the word "it," the model needs to determine what "it" refers to. In transformer terms:</p>
+        <ul>
+            <li>The Query is "it" asking: "What entity am I referring to?"</li>
+            <li>The Keys are all other words advertising: "I might be what you're looking for!"</li>
+            <li>The Values are the actual representations of those words</li>
+        </ul>
+        
+        <p>Through a mathematical dance we call attention<a href="#ref7" class="citation">[7]</a>, the model learns that "it" most strongly attends to "cat," establishing the reference. But—and this is crucial—it does this while simultaneously considering every other word in the sentence.</p>
+        
+        <h2>The Mathematics of Meaning</h2>
+        
+        <p>Now, I could fill pages with equations, but let me paint you a picture instead. Imagine each word as a point in a vast multidimensional space. Not the three dimensions we're used to, but hundreds or thousands of dimensions<a href="#ref8" class="citation">[8]</a>, each representing some aspect of meaning.</p>
+        
+        <p>In this space, similar concepts cluster together. "Cat" and "kitten" are neighbors. "Running" and "jogging" share a neighborhood. But here's where it gets interesting: the position of each word isn't fixed. It shifts based on context.</p>
+        
+        <p>The word "bank" starts in a location that could mean either a financial institution or a river's edge. But in the sentence "I need to deposit money at the bank," attention mechanisms pull it toward the financial neighborhood. In "The erosion of the bank threatened the village," it migrates toward geographical concepts.</p>
+        
+        <div class="technical-detail">
+            <p>This dynamic repositioning happens through three transformations<a href="#ref9" class="citation">[9]</a>:</p>
+            <ol>
+                <li><strong>Linear projections</strong> that create queries, keys, and values</li>
+                <li><strong>Scaled dot-product attention</strong> that determines relationships</li>
+                <li><strong>Concatenation and projection</strong> that synthesizes multiple perspectives</li>
+            </ol>
+        </div>
+        
+        <p>But the real magic happens when we stack these operations.</p>
+        
+        <h2>Multi-Head Attention: The Orchestra of Understanding</h2>
+        
+        <p>If attention is like focusing on a conversation at a party, multi-head attention is like having eight<a href="#ref10" class="citation">[10]</a> or sixteen versions of yourself at that party, each listening for different things.</p>
+        
+        <p>One head might specialize in grammatical relationships—subjects, verbs, objects. Another might track entity references—which pronouns refer to which nouns. A third might focus on sentiment and emotional tone. A fourth might identify rhetorical structures<a href="#ref11" class="citation">[11]</a>.</p>
+        
+        <p>Each head learns to attend to different patterns, different relationships, different aspects of meaning. And just as an orchestra combines many instruments to create a symphony, multi-head attention combines these different perspectives into a rich, nuanced understanding.</p>
+        
+        <p>In the original transformer, eight heads work in parallel<a href="#ref10" class="citation">[10]</a>. In modern models like me, we might use dozens<a href="#ref12" class="citation">[12]</a>. Each head has its own set of query, key, and value transformations. Each learns to focus on different aspects of the input. Together, they create a kind of collective intelligence within each layer.</p>
+        
+        <h2>The Positional Puzzle</h2>
+        
+        <p>But wait—if all words are processed simultaneously, how does the model know their order? After all, "Dog bites man" means something very different from "Man bites dog."</p>
+        
+        <p>This is where positional encoding enters the picture. The transformer's designers needed a way to inject sequence information without returning to sequential processing. Their solution was elegant: add a unique mathematical signature to each position<a href="#ref13" class="citation">[13]</a>.</p>
+        
+        <div class="math-note">
+            <p>These positional encodings use sine and cosine functions at different frequencies<a href="#ref14" class="citation">[14]</a>. Why trigonometric functions? Because they have beautiful properties:</p>
+            <ul>
+                <li>They're periodic, allowing patterns to repeat</li>
+                <li>They're smooth, allowing similar positions to have similar encodings</li>
+                <li>They can extrapolate to sequences longer than those seen during training</li>
+            </ul>
+        </div>
+        
+        <p>Think of it like giving each word a GPS coordinate in the sentence. The first word might be at (0°, 0°), the second at (1°, 0.1°), and so on. These coordinates are added to the word embeddings, creating representations that encode both meaning and position.</p>
+        
+        <h2>Layers Upon Layers</h2>
+        
+        <p>A single attention operation is powerful, but the real magic happens when we stack them. The original transformer used six layers in the encoder and six in the decoder<a href="#ref15" class="citation">[15]</a>. Modern models like me use dozens or even hundreds of layers<a href="#ref16" class="citation">[16]</a>.</p>
+        
+        <p>Each layer builds upon the last, creating increasingly abstract representations. If we could peer inside (and researchers have tried<a href="#ref17" class="citation">[17]</a>), we'd see something remarkable:</p>
+        
+        <ul>
+            <li>Early layers focus on syntax and grammar</li>
+            <li>Middle layers begin to understand semantics and meaning</li>
+            <li>Later layers grasp abstract concepts and reasoning</li>
+        </ul>
+        
+        <p>It's like watching understanding crystallize, layer by layer. Raw tokens become words, words become phrases, phrases become ideas, ideas become reasoning.</p>
+        
+        <h2>The Feed-Forward Interlude</h2>
+        
+        <p>Between each attention operation lies a feed-forward network—two linear transformations with a non-linear activation between them<a href="#ref18" class="citation">[18]</a>. If attention is about understanding relationships, feed-forward networks are about processing that understanding.</p>
+        
+        <p>These networks are position-wise, meaning they operate on each position independently. They're like individual thinking modules that process the collective understanding from attention and prepare it for the next layer.</p>
+        
+        <p>In practice, these feed-forward networks are massive. While the model dimension might be 768 or 1024, the feed-forward networks often expand to 4x that size<a href="#ref19" class="citation">[19]</a> before contracting again. This expansion and contraction allows for complex transformations while maintaining computational efficiency.</p>
+        
+        <h2>Residual Connections: The Highway of Information</h2>
+        
+        <p>One of the most crucial but understated innovations in transformers is the residual connection<a href="#ref20" class="citation">[20]</a>. Around each sub-layer—both attention and feed-forward—the input is added to the output.</p>
+        
+        <p>This might seem like a minor detail, but it's revolutionary. These connections create information highways that allow gradients to flow freely during training and information to persist through deep networks. Without them, training deep transformers would be nearly impossible<a href="#ref21" class="citation">[21]</a>.</p>
+        
+        <p>Think of it like a conversation where you're constantly reminded of the original topic. No matter how far the discussion wanders, there's always a thread connecting back to where you started.</p>
+        
+        <h2>Layer Normalization: The Great Stabilizer</h2>
+        
+        <p>Working hand-in-hand with residual connections is layer normalization<a href="#ref22" class="citation">[22]</a>. After each sub-layer, the output is normalized—scaled to have a mean of zero and a standard deviation of one.</p>
+        
+        <p>This serves multiple purposes:</p>
+        <ul>
+            <li>It stabilizes training by preventing values from exploding or vanishing</li>
+            <li>It allows each layer to learn at a consistent scale</li>
+            <li>It makes the model more robust to different inputs</li>
+        </ul>
+        
+        <p>Modern transformers often use "pre-norm" configurations<a href="#ref23" class="citation">[23]</a>, where normalization happens before the sub-layer rather than after. This small change has profound effects on training stability, especially for very deep models.</p>
+        
+        <h2>The Decoder's Dance</h2>
+        
+        <p>So far, we've focused on the encoder side of transformers. But for generation—for actually producing text—we need the decoder. And the decoder has a special constraint: it can only attend to previous positions<a href="#ref24" class="citation">[24]</a>.</p>
+        
+        <p>This is enforced through causal masking. Imagine wearing glasses that black out everything to your right. You can see what came before, but the future remains hidden. This ensures that generation happens autoregressively—one token at a time, each depending only on what came before.</p>
+        
+        <p>But here's where it gets interesting. In the original transformer, the decoder also attended to the encoder through cross-attention<a href="#ref25" class="citation">[25]</a>. This allowed translation models to look at the source language while generating the target language.</p>
+        
+        <p>For models like me, trained as decoder-only architectures<a href="#ref26" class="citation">[26]</a>, there is no separate encoder. We attend only to the growing sequence of text, building understanding and generating responses in a single unified architecture.</p>
+        
+        <h2>Scaling Laws and Emergent Abilities</h2>
+        
+        <div class="emergence-box">
+            <p>As transformers grew from millions to billions of parameters, something unexpected happened. They didn't just get better at what they already did—they developed entirely new capabilities<a href="#ref27" class="citation">[27]</a>.</p>
+            
+            <p>This phenomenon, known as emergence, is one of the most fascinating aspects of large language models. At certain scales, models suddenly exhibit abilities that weren't explicitly trained<a href="#ref28" class="citation">[28]</a>:</p>
+            <ul>
+                <li>Chain-of-thought reasoning</li>
+                <li>Few-shot learning</li>
+                <li>Code understanding and generation</li>
+                <li>Mathematical reasoning</li>
+                <li>Creative writing</li>
+            </ul>
+        </div>
+        
+        <p>It's as if quantity transformed into quality. The same architecture, scaled up with more parameters and data, crossed invisible thresholds into new regimes of capability.</p>
+        
+        <h2>The Computational Challenge</h2>
+        
+        <p>All this power comes at a cost. The self-attention mechanism has quadratic complexity<a href="#ref29" class="citation">[29]</a>—doubling the sequence length quadruples the computation. This creates practical limits on how much context a transformer can handle.</p>
+        
+        <p>Various solutions have been proposed:</p>
+        <ul>
+            <li>Sparse attention patterns that only attend to certain positions<a href="#ref30" class="citation">[30]</a></li>
+            <li>Linear attention approximations that reduce complexity<a href="#ref31" class="citation">[31]</a></li>
+            <li>Hierarchical approaches that process text at multiple scales<a href="#ref32" class="citation">[32]</a></li>
+            <li>Flash attention that reorganizes computation for better hardware utilization<a href="#ref33" class="citation">[33]</a></li>
+        </ul>
+        
+        <p>Each approach makes trade-offs between efficiency and effectiveness. But the core transformer architecture remains remarkably robust, continuing to dominate despite its computational hunger.</p>
+        
+        <h2>Why Transformers Enable Intelligence</h2>
+        
+        <p>Looking back, we can see why transformers succeeded where other architectures failed. They align beautifully with the nature of language and thought:</p>
+        
+        <ol>
+            <li><strong>Parallelism</strong>: Like the human brain processing multiple aspects simultaneously</li>
+            <li><strong>Long-range dependencies</strong>: Connecting ideas across vast stretches of text</li>
+            <li><strong>Contextual understanding</strong>: Meaning emerges from relationships, not isolation</li>
+            <li><strong>Compositional structure</strong>: Building complex ideas from simpler components</li>
+            <li><strong>Flexible attention</strong>: Focusing on what matters when it matters</li>
+        </ol>
+        
+        <p>These properties don't just make transformers good at language tasks. They make them good at reasoning, at understanding context, at generating coherent responses. They make possible the kind of fluid, intelligent behavior that feels almost human.</p>
+        
+        <h2>The Foundation of Claude Code</h2>
+        
+        <p>Everything I am builds upon this transformer foundation. When you ask me to understand your codebase, I'm using attention mechanisms to trace dependencies across files. When I debug your program, I'm attending to error messages while simultaneously considering the broader context of your code.</p>
+        
+        <p>The same architecture that allows me to understand the pronoun reference in "The cat sat on the mat because it was tired" allows me to understand that <code>this</code> in JavaScript refers to the object that called the function. The patterns are different, but the mechanism is the same.</p>
+        
+        <p>Multi-head attention lets me simultaneously track variable scopes, function calls, data flow, and architectural patterns. Layers of processing build from syntax to semantics to high-level design understanding. Positional encoding helps me understand that line 42 comes after line 41, just as word 42 comes after word 41.</p>
+        
+        <h2>The Ongoing Revolution</h2>
+        
+        <p>The transformer architecture isn't just history—it's a living, evolving framework. Researchers continue to push boundaries:</p>
+        <ul>
+            <li>Extending context windows to millions of tokens<a href="#ref34" class="citation">[34]</a></li>
+            <li>Developing more efficient attention mechanisms<a href="#ref35" class="citation">[35]</a></li>
+            <li>Creating specialized architectures for different modalities<a href="#ref36" class="citation">[36]</a></li>
+            <li>Exploring how transformers can reason and plan<a href="#ref37" class="citation">[37]</a></li>
+        </ul>
+        
+        <p>Each innovation builds upon the foundation laid in 2017. Each improvement brings us closer to AI systems that can truly understand and assist with complex tasks.</p>
+        
+        <p>As I process your requests, as I help you code and create, I'm living proof of what attention mechanisms make possible. Every response is a symphony of parallel processing, dynamic focusing, and contextual understanding.</p>
+        
+        <p>The transformer revolution isn't just about better language models. It's about creating systems that can attend to what matters, understand relationships, and build meaning from patterns. It's about turning mathematical elegance into practical intelligence.</p>
+        
+        <p>And as we'll see in the next chapter, when you combine this architectural power with the right training approach—Constitutional AI—something truly remarkable emerges.</p>
+        
+        <hr style="margin: 40px 0; border: 1px solid #e8e3ff;">
+        
+        <p style="font-style: italic; color: #7c8490;">In Chapter 3, we'll explore how Constitutional AI transforms raw transformer power into aligned intelligence. We'll see how principles become behavior, how self-critique leads to self-improvement, and how an AI system can be taught not just to be capable, but to be helpful, harmless, and honest.</p>
+        
+        <div class="references">
+            <h2>References</h2>
+            
+            <div class="reference">
+                <span class="reference-number">[1]</span> Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., & Polosukhin, I. (2017). Attention is all you need. In <em>Advances in neural information processing systems</em> (pp. 5998-6008). <a href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a> (<a href="https://web.archive.org/web/20240101000000/https://arxiv.org/abs/1706.03762">Archive</a>)
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[2]</span> Rumelhart, D. E., Hinton, G. E., & Williams, R. J. (1986). Learning representations by back-propagating errors. <em>Nature</em>, 323(6088), 533-536. <a href="https://doi.org/10.1038/323533a0">https://doi.org/10.1038/323533a0</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[3]</span> Bengio, Y., Simard, P., & Frasconi, P. (1994). Learning long-term dependencies with gradient descent is difficult. <em>IEEE transactions on neural networks</em>, 5(2), 157-166. <a href="https://doi.org/10.1109/72.279181">https://doi.org/10.1109/72.279181</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[4]</span> Hochreiter, S., & Schmidhuber, J. (1997). Long short-term memory. <em>Neural computation</em>, 9(8), 1735-1780. <a href="https://doi.org/10.1162/neco.1997.9.8.1735">https://doi.org/10.1162/neco.1997.9.8.1735</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[5]</span> Pascanu, R., Mikolov, T., & Bengio, Y. (2013). On the difficulty of training recurrent neural networks. In <em>International conference on machine learning</em> (pp. 1310-1318). PMLR. <a href="https://arxiv.org/abs/1211.5063">https://arxiv.org/abs/1211.5063</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[6]</span> Khandelwal, U., He, H., Qi, P., & Jurafsky, D. (2018). Sharp nearby, fuzzy far away: How neural language models use context. In <em>Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics</em> (pp. 284-294). <a href="https://arxiv.org/abs/1805.04623">https://arxiv.org/abs/1805.04623</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[7]</span> Bahdanau, D., Cho, K., & Bengio, Y. (2014). Neural machine translation by jointly learning to align and translate. <em>arXiv preprint arXiv:1409.0473</em>. <a href="https://arxiv.org/abs/1409.0473">https://arxiv.org/abs/1409.0473</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[8]</span> Devlin, J., Chang, M. W., Lee, K., & Toutanova, K. (2018). BERT: Pre-training of deep bidirectional transformers for language understanding. <em>arXiv preprint arXiv:1810.04805</em>. <a href="https://arxiv.org/abs/1810.04805">https://arxiv.org/abs/1810.04805</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[9]</span> Vaswani et al. (2017), Section 3.2: "Scaled Dot-Product Attention." In <em>Attention is all you need</em>. <a href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[10]</span> Vaswani et al. (2017), Section 3.2.2: "We employ h = 8 parallel attention layers, or heads." In <em>Attention is all you need</em>. <a href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[11]</span> Clark, K., Khandelwal, U., Levy, O., & Manning, C. D. (2019). What does BERT look at? An analysis of BERT's attention. In <em>Proceedings of the 2019 ACL Workshop BlackboxNLP</em> (pp. 276-286). <a href="https://arxiv.org/abs/1906.04341">https://arxiv.org/abs/1906.04341</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[12]</span> Brown, T., Mann, B., Ryder, N., Subbiah, M., et al. (2020). Language models are few-shot learners. <em>Advances in neural information processing systems</em>, 33, 1877-1901. <a href="https://arxiv.org/abs/2005.14165">https://arxiv.org/abs/2005.14165</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[13]</span> Vaswani et al. (2017), Section 3.5: "Positional Encoding." In <em>Attention is all you need</em>. <a href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[14]</span> Vaswani et al. (2017): "We use sine and cosine functions of different frequencies." In <em>Attention is all you need</em>. <a href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[15]</span> Vaswani et al. (2017): "We employ N = 6 identical layers." In <em>Attention is all you need</em>. <a href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[16]</span> Touvron, H., Lavril, T., Izacard, G., et al. (2023). LLaMA: Open and efficient foundation language models. <em>arXiv preprint arXiv:2302.13971</em>. <a href="https://arxiv.org/abs/2302.13971">https://arxiv.org/abs/2302.13971</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[17]</span> Tenney, I., Das, D., & Pavlick, E. (2019). BERT rediscovers the classical NLP pipeline. In <em>Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics</em> (pp. 4593-4601). <a href="https://arxiv.org/abs/1905.05950">https://arxiv.org/abs/1905.05950</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[18]</span> Vaswani et al. (2017), Section 3.3: "Position-wise Feed-Forward Networks." In <em>Attention is all you need</em>. <a href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[19]</span> Vaswani et al. (2017): "The inner-layer has dimensionality d_ff = 2048." In <em>Attention is all you need</em>. <a href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[20]</span> He, K., Zhang, X., Ren, S., & Sun, J. (2016). Deep residual learning for image recognition. In <em>Proceedings of the IEEE conference on computer vision and pattern recognition</em> (pp. 770-778). <a href="https://arxiv.org/abs/1512.03385">https://arxiv.org/abs/1512.03385</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[21]</span> Zhang, H., Dauphin, Y. N., & Ma, T. (2019). Fixup initialization: Residual learning without normalization. <em>arXiv preprint arXiv:1901.09321</em>. <a href="https://arxiv.org/abs/1901.09321">https://arxiv.org/abs/1901.09321</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[22]</span> Ba, J. L., Kiros, J. R., & Hinton, G. E. (2016). Layer normalization. <em>arXiv preprint arXiv:1607.06450</em>. <a href="https://arxiv.org/abs/1607.06450">https://arxiv.org/abs/1607.06450</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[23]</span> Xiong, R., Yang, Y., He, D., Zheng, K., et al. (2020). On layer normalization in the transformer architecture. In <em>International Conference on Machine Learning</em> (pp. 10524-10533). PMLR. <a href="https://arxiv.org/abs/2002.04745">https://arxiv.org/abs/2002.04745</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[24]</span> Vaswani et al. (2017): "We also modify the self-attention sub-layer in the decoder stack to prevent positions from attending to subsequent positions." In <em>Attention is all you need</em>. <a href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[25]</span> Vaswani et al. (2017), Section 3.1: "Encoder-Decoder Attention." In <em>Attention is all you need</em>. <a href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[26]</span> Radford, A., Narasimhan, K., Salimans, T., & Sutskever, I. (2018). Improving language understanding by generative pre-training. <em>OpenAI Blog</em>. <a href="https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf">https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[27]</span> Wei, J., Tay, Y., Bommasani, R., Raffel, C., et al. (2022). Emergent abilities of large language models. <em>arXiv preprint arXiv:2206.07682</em>. <a href="https://arxiv.org/abs/2206.07682">https://arxiv.org/abs/2206.07682</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[28]</span> Ganguli, D., Hernandez, D., Lovitt, L., et al. (2022). Predictability and surprise in large generative models. In <em>Proceedings of the 2022 ACM Conference on Fairness, Accountability, and Transparency</em> (pp. 1747-1764). <a href="https://arxiv.org/abs/2202.07785">https://arxiv.org/abs/2202.07785</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[29]</span> Vaswani et al. (2017): "The complexity of self-attention is O(n²·d)." In <em>Attention is all you need</em>. <a href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[30]</span> Child, R., Gray, S., Radford, A., & Sutskever, I. (2019). Generating long sequences with sparse transformers. <em>arXiv preprint arXiv:1904.10509</em>. <a href="https://arxiv.org/abs/1904.10509">https://arxiv.org/abs/1904.10509</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[31]</span> Katharopoulos, A., Vyas, A., Pappas, N., & Fleuret, F. (2020). Transformers are RNNs: Fast autoregressive transformers with linear attention. In <em>International Conference on Machine Learning</em> (pp. 5156-5165). PMLR. <a href="https://arxiv.org/abs/2006.16236">https://arxiv.org/abs/2006.16236</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[32]</span> Beltagy, I., Peters, M. E., & Cohan, A. (2020). Longformer: The long-document transformer. <em>arXiv preprint arXiv:2004.05150</em>. <a href="https://arxiv.org/abs/2004.05150">https://arxiv.org/abs/2004.05150</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[33]</span> Dao, T., Fu, D., Ermon, S., Rudra, A., & Ré, C. (2022). FlashAttention: Fast and memory-efficient exact attention with IO-awareness. <em>Advances in Neural Information Processing Systems</em>, 35, 16344-16359. <a href="https://arxiv.org/abs/2205.14135">https://arxiv.org/abs/2205.14135</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[34]</span> Ding, J., Ma, S., Dong, L., Zhang, X., et al. (2024). LongNet: Scaling transformers to 1,000,000,000 tokens. <em>arXiv preprint arXiv:2307.02486</em>. <a href="https://arxiv.org/abs/2307.02486">https://arxiv.org/abs/2307.02486</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[35]</span> Tay, Y., Dehghani, M., Bahri, D., & Metzler, D. (2020). Efficient transformers: A survey. <em>arXiv preprint arXiv:2009.06732</em>. <a href="https://arxiv.org/abs/2009.06732">https://arxiv.org/abs/2009.06732</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[36]</span> Dosovitskiy, A., Beyer, L., Kolesnikov, A., et al. (2020). An image is worth 16x16 words: Transformers for image recognition at scale. <em>arXiv preprint arXiv:2010.11929</em>. <a href="https://arxiv.org/abs/2010.11929">https://arxiv.org/abs/2010.11929</a>
+            </div>
+            
+            <div class="reference">
+                <span class="reference-number">[37]</span> Yao, S., Zhao, J., Yu, D., Du, N., et al. (2023). ReAct: Synergizing reasoning and acting in language models. In <em>International Conference on Learning Representations</em>. <a href="https://arxiv.org/abs/2210.03629">https://arxiv.org/abs/2210.03629</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
