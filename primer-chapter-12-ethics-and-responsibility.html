@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter 12: Ethics and Responsibility | Claude Code Primer</title>
@@ -311,7 +309,20 @@
             }
         }
     </style>
-</head>
+<link rel="stylesheet" href="word-break-fix.css">
+    <style id="word-break-critical">
+        /* Critical word-break rules for immediate render */
+        * { max-width: 100%; box-sizing: border-box; }
+        body { overflow-x: hidden; word-wrap: break-word; overflow-wrap: break-word; }
+        p, h1, h2, h3, h4, h5, h6, a, span, div, li { 
+            word-wrap: break-word; 
+            overflow-wrap: break-word; 
+        }
+        @media (max-width: 768px) {
+            body { hyphens: auto; -webkit-hyphens: auto; }
+            .container { max-width: calc(100vw - 2rem); }
+        }
+    </style></head>
 <body>
     <div class="banner">
         <div class="banner-content">
@@ -483,7 +494,7 @@ class BiasAuditor:
             <div class="code-block">
                 <pre>// Claude Code emphasizes explainability
 class LoanDecisionSystem {
-  async evaluateLoan(application: LoanApplication): Promise<LoanDecision> {
+  async evaluateLoan(application: LoanApplication): Promise<loandecision> {
     const factors = await this.calculateFactors(application);
     const decision = this.makeDecision(factors);
     
@@ -526,7 +537,7 @@ class LoanDecisionSystem {
         "Application requires further review - see suggestions below"
     };
   }
-}</pre>
+}</loandecision></pre>
             </div>
         </div>
         
@@ -549,7 +560,7 @@ class UserProfile:
     def __init__(self, purpose: DataPurpose):
         self.fields = self.determine_minimal_fields(purpose)
         
-    def determine_minimal_fields(self, purpose: DataPurpose) -> List[str]:
+    def determine_minimal_fields(self, purpose: DataPurpose) -&gt; List[str]:
         """Collect only what's necessary for the stated purpose"""
         if purpose == DataPurpose.NEWSLETTER:
             return ['email', 'name_optional']
@@ -608,23 +619,14 @@ function Button({ onClick, children, variant = 'primary' }) {
   }
   
   return (
-    <button
-      onClick={onClick}
-      className={`btn btn-${variant}`}
-      // ARIA attributes automatically added
-      role="button"
-      aria-pressed={variant === 'toggle' ? isPressed : undefined}
-      aria-busy={isLoading}
-      aria-disabled={isDisabled}
-      // Keyboard navigation
-      onKeyDown={(e) => {
+    <button onclick="{onClick}" classname="{`btn" btn-${variant}`}="" aria="" attributes="" automatically="" added="" role="button" aria-pressed="{variant" =="=" 'toggle'="" ?="" ispressed="" :="" undefined}="" aria-busy="{isLoading}" aria-disabled="{isDisabled}" keyboard="" navigation="" onkeydown="{(e)"> {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           onClick?.(e);
         }
       }}
-    >
-      {isLoading && <span className="sr-only">Loading...</span>}
+    &gt;
+      {isLoading &amp;&amp; <span classname="sr-only">Loading...</span>}
       {children}
     </button>
   );
@@ -641,7 +643,7 @@ function Button({ onClick, children, variant = 'primary' }) {
   min-width: 44px;
   
   /* Focus indicators for keyboard users */
-  &:focus-visible {
+  &amp;:focus-visible {
     outline: 3px solid var(--focus-color);
     outline-offset: 2px;
   }
@@ -947,7 +949,7 @@ def contribute_back(project):
     
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2024 Claude Code Primer. All rights reserved.</p>
+            <p>© 2024 Claude Code Primer. All rights reserved.</p>
             <nav class="footer-nav">
                 <a href="primer-chapter-11-case-studies.html">Previous Chapter</a>
                 <a href="index.html">Contents</a>
@@ -957,5 +959,5 @@ def contribute_back(project):
             </nav>
         </div>
     </footer>
-</body>
-</html>
+
+</body></html>

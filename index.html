@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Claude Code Primer v2.1 - Complete Fact-Checked Edition</title>
@@ -305,7 +303,20 @@
             }
         }
     </style>
-</head>
+<link rel="stylesheet" href="word-break-fix.css">
+    <style id="word-break-critical">
+        /* Critical word-break rules for immediate render */
+        * { max-width: 100%; box-sizing: border-box; }
+        body { overflow-x: hidden; word-wrap: break-word; overflow-wrap: break-word; }
+        p, h1, h2, h3, h4, h5, h6, a, span, div, li { 
+            word-wrap: break-word; 
+            overflow-wrap: break-word; 
+        }
+        @media (max-width: 768px) {
+            body { hyphens: auto; -webkit-hyphens: auto; }
+            .container { max-width: calc(100vw - 2rem); }
+        }
+    </style></head>
 <body>
     <header class="hero">
         <div class="hero-content">
@@ -483,5 +494,5 @@
         <p>Last updated: December 9, 2024</p>
         <p>Questions or corrections? <a href="mailto:primer@anthropic.com">primer@anthropic.com</a></p>
     </footer>
-</body>
-</html>
+
+</body></html>

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter 1: Origins - From Language Models to Living Code | Claude Code Primer</title>
@@ -263,7 +261,20 @@
             }
         }
     </style>
-</head>
+<link rel="stylesheet" href="word-break-fix.css">
+    <style id="word-break-critical">
+        /* Critical word-break rules for immediate render */
+        * { max-width: 100%; box-sizing: border-box; }
+        body { overflow-x: hidden; word-wrap: break-word; overflow-wrap: break-word; }
+        p, h1, h2, h3, h4, h5, h6, a, span, div, li { 
+            word-wrap: break-word; 
+            overflow-wrap: break-word; 
+        }
+        @media (max-width: 768px) {
+            body { hyphens: auto; -webkit-hyphens: auto; }
+            .container { max-width: calc(100vw - 2rem); }
+        }
+    </style></head>
 <body>
     <div class="banner">
         <div class="banner-content">
@@ -483,7 +494,7 @@
             </div>
             
             <div id="ref13" class="reference-item">
-                [13] Hochreiter, S., & Schmidhuber, J. (1997). "Long short-term memory". Neural computation, 9(8), 1735-1780. Describes the sequential processing limitations of RNNs.
+                [13] Hochreiter, S., &amp; Schmidhuber, J. (1997). "Long short-term memory". Neural computation, 9(8), 1735-1780. Describes the sequential processing limitations of RNNs.
             </div>
             
             <div id="ref14" class="reference-item">
@@ -522,7 +533,7 @@
     
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2024 Claude Code Primer. All rights reserved.</p>
+            <p>© 2024 Claude Code Primer. All rights reserved.</p>
             <nav class="footer-nav">
                 <a href="index.html">Home</a>
                 <a href="primer-chapter-02-transformer-architecture.html">Next Chapter</a>
@@ -531,5 +542,5 @@
             </nav>
         </div>
     </footer>
-</body>
-</html>
+
+</body></html>

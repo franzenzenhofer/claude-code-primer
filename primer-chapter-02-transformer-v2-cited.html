@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Claude Code Primer v2.0 - Chapter 2: The Transformer Revolution</title>
@@ -196,7 +194,20 @@
             }
         }
     </style>
-</head>
+<link rel="stylesheet" href="word-break-fix.css">
+    <style id="word-break-critical">
+        /* Critical word-break rules for immediate render */
+        * { max-width: 100%; box-sizing: border-box; }
+        body { overflow-x: hidden; word-wrap: break-word; overflow-wrap: break-word; }
+        p, h1, h2, h3, h4, h5, h6, a, span, div, li { 
+            word-wrap: break-word; 
+            overflow-wrap: break-word; 
+        }
+        @media (max-width: 768px) {
+            body { hyphens: auto; -webkit-hyphens: auto; }
+            .container { max-width: calc(100vw - 2rem); }
+        }
+    </style></head>
 <body>
     <div class="version-banner">
         <h2>Claude Code Primer - Version 2.0 (Fact-Checked Edition)</h2>
@@ -436,41 +447,37 @@
                     https://arxiv.org/abs/1706.03762
                 </a>
                 <span class="archive-link">
-                    [<a href="https://web.archive.org/web/20170612204548/https://arxiv.org/abs/1706.03762" 
-                        target="_blank" rel="noopener">Archived</a>]
+                    [<a href="https://web.archive.org/web/20170612204548/https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">Archived</a>]
                 </span>
             </li>
             
             <li id="ref2">
-                Recurrent Neural Networks overview: Goodfellow, I., Bengio, Y., & Courville, A. (2016). "Deep Learning," Chapter 10.
+                Recurrent Neural Networks overview: Goodfellow, I., Bengio, Y., &amp; Courville, A. (2016). "Deep Learning," Chapter 10.
                 <a href="https://www.deeplearningbook.org/contents/rnn.html" target="_blank" rel="noopener">
                     https://www.deeplearningbook.org/contents/rnn.html
                 </a>
                 <span class="archive-link">
-                    [<a href="https://web.archive.org/web/20161229000000*/https://www.deeplearningbook.org/contents/rnn.html" 
-                        target="_blank" rel="noopener">Archived</a>]
+                    [<a href="https://web.archive.org/web/20161229000000*/https://www.deeplearningbook.org/contents/rnn.html" target="_blank" rel="noopener">Archived</a>]
                 </span>
             </li>
             
             <li id="ref3">
-                Hochreiter, S., & Schmidhuber, J. (1997). "Long Short-Term Memory." Neural Computation, 9(8), 1735-1780.
+                Hochreiter, S., &amp; Schmidhuber, J. (1997). "Long Short-Term Memory." Neural Computation, 9(8), 1735-1780.
                 <a href="https://www.bioinf.jku.at/publications/older/2604.pdf" target="_blank" rel="noopener">
                     https://www.bioinf.jku.at/publications/older/2604.pdf
                 </a>
                 <span class="archive-link">
-                    [<a href="https://web.archive.org/web/19970000000000*/https://www.bioinf.jku.at/publications/older/2604.pdf" 
-                        target="_blank" rel="noopener">Archived</a>]
+                    [<a href="https://web.archive.org/web/19970000000000*/https://www.bioinf.jku.at/publications/older/2604.pdf" target="_blank" rel="noopener">Archived</a>]
                 </span>
             </li>
             
             <li id="ref4">
-                Bahdanau, D., Cho, K., & Bengio, Y. (2014). "Neural Machine Translation by Jointly Learning to Align and Translate." arXiv:1409.0473.
+                Bahdanau, D., Cho, K., &amp; Bengio, Y. (2014). "Neural Machine Translation by Jointly Learning to Align and Translate." arXiv:1409.0473.
                 <a href="https://arxiv.org/abs/1409.0473" target="_blank" rel="noopener">
                     https://arxiv.org/abs/1409.0473
                 </a>
                 <span class="archive-link">
-                    [<a href="https://web.archive.org/web/20140901000000*/https://arxiv.org/abs/1409.0473" 
-                        target="_blank" rel="noopener">Archived</a>]
+                    [<a href="https://web.archive.org/web/20140901000000*/https://arxiv.org/abs/1409.0473" target="_blank" rel="noopener">Archived</a>]
                 </span>
             </li>
             
@@ -485,8 +492,7 @@
                     https://papers.nips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html
                 </a>
                 <span class="archive-link">
-                    [<a href="https://web.archive.org/web/20180101000000*/https://papers.nips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html" 
-                        target="_blank" rel="noopener">Archived</a>]
+                    [<a href="https://web.archive.org/web/20180101000000*/https://papers.nips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html" target="_blank" rel="noopener">Archived</a>]
                 </span>
             </li>
             
@@ -560,8 +566,7 @@
                     https://arxiv.org/abs/1906.05714
                 </a>
                 <span class="archive-link">
-                    [<a href="https://web.archive.org/web/20190615000000*/https://arxiv.org/abs/1906.05714" 
-                        target="_blank" rel="noopener">Archived</a>]
+                    [<a href="https://web.archive.org/web/20190615000000*/https://arxiv.org/abs/1906.05714" target="_blank" rel="noopener">Archived</a>]
                 </span>
             </li>
             
@@ -585,8 +590,7 @@
                     https://arxiv.org/abs/1512.03385
                 </a>
                 <span class="archive-link">
-                    [<a href="https://web.archive.org/web/20151210000000*/https://arxiv.org/abs/1512.03385" 
-                        target="_blank" rel="noopener">Archived</a>]
+                    [<a href="https://web.archive.org/web/20151210000000*/https://arxiv.org/abs/1512.03385" target="_blank" rel="noopener">Archived</a>]
                 </span>
             </li>
             
@@ -598,13 +602,12 @@
             </li>
             
             <li id="ref21">
-                Layer normalization: Ba, J. L., Kiros, J. R., & Hinton, G. E. (2016). "Layer Normalization." arXiv:1607.06450.
+                Layer normalization: Ba, J. L., Kiros, J. R., &amp; Hinton, G. E. (2016). "Layer Normalization." arXiv:1607.06450.
                 <a href="https://arxiv.org/abs/1607.06450" target="_blank" rel="noopener">
                     https://arxiv.org/abs/1607.06450
                 </a>
                 <span class="archive-link">
-                    [<a href="https://web.archive.org/web/20160721000000*/https://arxiv.org/abs/1607.06450" 
-                        target="_blank" rel="noopener">Archived</a>]
+                    [<a href="https://web.archive.org/web/20160721000000*/https://arxiv.org/abs/1607.06450" target="_blank" rel="noopener">Archived</a>]
                 </span>
             </li>
             
@@ -635,8 +638,7 @@
                     https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf
                 </a>
                 <span class="archive-link">
-                    [<a href="https://web.archive.org/web/20180611000000*/https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf" 
-                        target="_blank" rel="noopener">Archived</a>]
+                    [<a href="https://web.archive.org/web/20180611000000*/https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf" target="_blank" rel="noopener">Archived</a>]
                 </span>
             </li>
             
@@ -646,8 +648,7 @@
                     https://arxiv.org/abs/2001.08361
                 </a>
                 <span class="archive-link">
-                    [<a href="https://web.archive.org/web/20200123000000*/https://arxiv.org/abs/2001.08361" 
-                        target="_blank" rel="noopener">Archived</a>]
+                    [<a href="https://web.archive.org/web/20200123000000*/https://arxiv.org/abs/2001.08361" target="_blank" rel="noopener">Archived</a>]
                 </span>
             </li>
             
@@ -735,7 +736,7 @@
             </li>
             
             <li id="ref39">
-                Extended context windows: Beltagy, I., Peters, M. E., & Cohan, A. (2020). "Longformer: The Long-Document Transformer." arXiv:2004.05150.
+                Extended context windows: Beltagy, I., Peters, M. E., &amp; Cohan, A. (2020). "Longformer: The Long-Document Transformer." arXiv:2004.05150.
                 <a href="https://arxiv.org/abs/2004.05150" target="_blank" rel="noopener">
                     https://arxiv.org/abs/2004.05150
                 </a>
@@ -747,8 +748,7 @@
                     https://arxiv.org/abs/2009.06732
                 </a>
                 <span class="archive-link">
-                    [<a href="https://web.archive.org/web/20200917000000*/https://arxiv.org/abs/2009.06732" 
-                        target="_blank" rel="noopener">Archived</a>]
+                    [<a href="https://web.archive.org/web/20200917000000*/https://arxiv.org/abs/2009.06732" target="_blank" rel="noopener">Archived</a>]
                 </span>
             </li>
             
@@ -767,5 +767,5 @@
             </li>
         </ol>
     </div>
-</body>
-</html>
+
+</body></html>

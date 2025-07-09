@@ -220,7 +220,20 @@
             font-size: 0.9em;
         }
     </style>
-<link rel="stylesheet" href="chapter-nav-style.css"></head>
+<link rel="stylesheet" href="chapter-nav-style.css"><link rel="stylesheet" href="word-break-fix.css">
+    <style id="word-break-critical">
+        /* Critical word-break rules for immediate render */
+        * { max-width: 100%; box-sizing: border-box; }
+        body { overflow-x: hidden; word-wrap: break-word; overflow-wrap: break-word; }
+        p, h1, h2, h3, h4, h5, h6, a, span, div, li { 
+            word-wrap: break-word; 
+            overflow-wrap: break-word; 
+        }
+        @media (max-width: 768px) {
+            body { hyphens: auto; -webkit-hyphens: auto; }
+            .container { max-width: calc(100vw - 2rem); }
+        }
+    </style></head>
 <body>
     <div class="version-banner">
         <h2>Version 2.0 - Fact-Checked Edition</h2><nav class="chapter-nav top">

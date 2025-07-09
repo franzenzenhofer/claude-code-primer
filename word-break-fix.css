@@ -1,0 +1,103 @@
+/* Word Break Fix - Prevent horizontal scrolling */
+* {
+    /* Prevent overflow on all elements */
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Global word breaking rules */
+body {
+    overflow-x: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+}
+
+/* Ensure all text elements break properly */
+p, h1, h2, h3, h4, h5, h6, 
+a, span, div, li, td, th,
+.chapter-card, .feature, .stat-label,
+.nav-title, .nav-label {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+}
+
+/* Specific fixes for long URLs or code */
+a {
+    word-break: break-all;
+    hyphens: none;
+}
+
+/* Code and pre elements */
+code, pre {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+/* Tables should scroll if needed */
+table {
+    display: block;
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+/* Prevent images from breaking layout */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Container constraints */
+.container, .chapter, .section,
+.toc-page, .book-cover {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Mobile specific word breaking */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+        line-height: 1.8;
+    }
+    
+    /* More aggressive word breaking on mobile */
+    p, h1, h2, h3, h4, h5, h6,
+    a, span, div, li {
+        word-break: break-word;
+        hyphens: auto;
+    }
+    
+    /* Ensure containers don't overflow */
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        max-width: calc(100vw - 2rem);
+    }
+    
+    .chapter-card {
+        max-width: 100%;
+        word-break: break-word;
+    }
+    
+    /* Navigation specific */
+    .chapter-nav {
+        max-width: 100%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .nav-title, .nav-label {
+        max-width: 100%;
+        word-break: break-word;
+    }
+}

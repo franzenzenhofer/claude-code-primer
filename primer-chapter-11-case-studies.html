@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter 11: Real-World Case Studies | Claude Code Primer</title>
@@ -343,7 +341,20 @@
             }
         }
     </style>
-</head>
+<link rel="stylesheet" href="word-break-fix.css">
+    <style id="word-break-critical">
+        /* Critical word-break rules for immediate render */
+        * { max-width: 100%; box-sizing: border-box; }
+        body { overflow-x: hidden; word-wrap: break-word; overflow-wrap: break-word; }
+        p, h1, h2, h3, h4, h5, h6, a, span, div, li { 
+            word-wrap: break-word; 
+            overflow-wrap: break-word; 
+        }
+        @media (max-width: 768px) {
+            body { hyphens: auto; -webkit-hyphens: auto; }
+            .container { max-width: calc(100vw - 2rem); }
+        }
+    </style></head>
 <body>
     <div class="banner">
         <div class="banner-content">
@@ -427,10 +438,10 @@ interface StripeIntegrationPlan {
     1: "Core OAuth Implementation",
     2: "Payment Flow Setup",
     3: "Webhook Infrastructure",
-    4: "Error Handling & Resilience",
-    5: "Compliance & Security",
+    4: "Error Handling &amp; Resilience",
+    5: "Compliance &amp; Security",
     6: "Testing Suite",
-    7: "Monitoring & Observability"
+    7: "Monitoring &amp; Observability"
   };
   
   criticalPath: [
@@ -821,7 +832,7 @@ Let me create a modernization plan that maintains operations...
     
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2024 Claude Code Primer. All rights reserved.</p>
+            <p>© 2024 Claude Code Primer. All rights reserved.</p>
             <nav class="footer-nav">
                 <a href="primer-chapter-10-github-integration.html">Previous Chapter</a>
                 <a href="index.html">Contents</a>
@@ -831,5 +842,5 @@ Let me create a modernization plan that maintains operations...
             </nav>
         </div>
     </footer>
-</body>
-</html>
+
+</body></html>
