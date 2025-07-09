@@ -1,0 +1,32 @@
+{
+  "timestamp": "2025-07-09T20:30:31.504Z",
+  "url": "http://localhost:8000",
+  "passed": 10,
+  "failed": 0,
+  "screenshots": [
+    "screenshots/homepage-1752093019650.png",
+    "screenshots/mobile-homepage-1752093020166.png",
+    "screenshots/chapter-navigation-1752093021019.png",
+    "screenshots/responsive-mobile-1752093022649.png",
+    "screenshots/responsive-tablet-1752093023395.png",
+    "screenshots/responsive-desktop-1752093024196.png",
+    "screenshots/typography-check-1752093029360.png",
+    "screenshots/complete-book-1752093030434.png",
+    "screenshots/print-preview-1752093031004.png"
+  ],
+  "details": {
+    "passed": [
+      "Homepage loads correctly",
+      "No horizontal scroll on mobile",
+      "Chapter navigation functional",
+      "Responsive design breakpoints",
+      "All internal links are valid",
+      "Images have alt text",
+      "Page loads within 3 seconds",
+      "Typography is readable",
+      "Complete book file loads",
+      "Print styles are applied"
+    ],
+    "failed": []
+  }
+}
