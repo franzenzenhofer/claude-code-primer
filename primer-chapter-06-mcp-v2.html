@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter 6: The Model Context Protocol - Building Bridges to Everything | Claude Code Primer</title>
@@ -341,11 +339,26 @@
             }
         }
     </style>
-</head>
+<link rel="stylesheet" href="chapter-nav-style.css"></head>
 <body>
     <div class="banner">
         <div class="banner-content">
-            <h1>Chapter 6: The Model Context Protocol</h1>
+            <h1>Chapter 6: The Model Context Protocol</h1><nav class="chapter-nav top">
+        <div class="nav-prev">
+            <a href="primer-chapter-05-api-to-code-v2.html">
+                <div class="nav-label">← Previous Chapter</div>
+                <div class="nav-title">Chapter 5: From API to Code</div>
+            </a>
+        </div>
+        <div class="nav-home">
+            <a href="index.html">Table of Contents</a>
+        </div>
+        <div class="nav-next">
+            <a href="primer-chapter-07-revolution-v2.html">
+                <div class="nav-label">Next Chapter →</div>
+                <div class="nav-title">Chapter 7: Revolutionizing Development</div>
+            </a>
+        </div></nav>
             <p class="subtitle">Building Bridges to Everything</p>
             <span class="fact-check-badge">Fact-Checked with Citations</span>
         </div>
@@ -475,7 +488,7 @@
   "params": {
     "name": "query_database",
     "arguments": {
-      "query": "SELECT * FROM users WHERE created_at >= NOW() - INTERVAL '7 days'"
+      "query": "SELECT * FROM users WHERE created_at &gt;= NOW() - INTERVAL '7 days'"
     }
   }
 }</pre>
@@ -527,19 +540,19 @@ mcp = FastMCP("my-notes-server")
 notes = {}
 
 @mcp.tool()
-def create_note(title: str, content: str) -> str:
+def create_note(title: str, content: str) -&gt; str:
     """Create a new note"""
     note_id = str(len(notes) + 1)
     notes[note_id] = {"title": title, "content": content}
     return f"Created note {note_id}: {title}"
 
 @mcp.tool()
-def read_note(note_id: str) -> dict:
+def read_note(note_id: str) -&gt; dict:
     """Read a note by ID"""
     return notes.get(note_id, {"error": "Note not found"})
 
 @mcp.tool()
-def list_notes() -> list:
+def list_notes() -&gt; list:
     """List all notes"""
     return [{"id": id, "title": note["title"]} 
             for id, note in notes.items()]
@@ -915,7 +928,7 @@ if __name__ == "__main__":
             </div>
             
             <div id="ref16" class="reference-item">
-                [16] Comparison with REST based on Richardson, L. & Ruby, S. (2007). "RESTful Web Services" and MCP documentation.
+                [16] Comparison with REST based on Richardson, L. &amp; Ruby, S. (2007). "RESTful Web Services" and MCP documentation.
             </div>
             
             <div id="ref17" class="reference-item">
@@ -958,7 +971,7 @@ if __name__ == "__main__":
     
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2024 Claude Code Primer. All rights reserved.</p>
+            <p>© 2024 Claude Code Primer. All rights reserved.</p>
             <nav class="footer-nav">
                 <a href="primer-chapter-05-api-to-code-v2.html">Previous Chapter</a>
                 <a href="index.html">Contents</a>
@@ -968,5 +981,20 @@ if __name__ == "__main__":
             </nav>
         </div>
     </footer>
-</body>
-</html>
+
+<nav class="chapter-nav bottom">
+        <div class="nav-prev">
+            <a href="primer-chapter-05-api-to-code-v2.html">
+                <div class="nav-label">← Previous Chapter</div>
+                <div class="nav-title">Chapter 5: From API to Code</div>
+            </a>
+        </div>
+        <div class="nav-home">
+            <a href="index.html">Table of Contents</a>
+        </div>
+        <div class="nav-next">
+            <a href="primer-chapter-07-revolution-v2.html">
+                <div class="nav-label">Next Chapter →</div>
+                <div class="nav-title">Chapter 7: Revolutionizing Development</div>
+            </a>
+        </div></nav></body></html>

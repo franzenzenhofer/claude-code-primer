@@ -1,0 +1,146 @@
+# GitHub Actions CI/CD Configuration
+# Place this file in .github/workflows/test.yml
+
+name: Claude Code Primer Tests
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master ]
+  schedule:
+    # Run tests daily at 2 AM UTC
+    - cron: '0 2 * * *'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x, 20.x]
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Run comprehensive tests
+      run: npm test
+    
+    - name: Run link validation
+      run: npm run test:links
+    
+    - name: Run quick test report
+      run: npm run test:quick
+    
+    - name: Check for large files
+      run: |
+        find . -type f -size +1M -not -path "./node_modules/*" -exec ls -lh {} \;
+        if [ $(find . -type f -size +5M -not -path "./node_modules/*" | wc -l) -gt 0 ]; then
+          echo "Warning: Found files larger than 5MB"
+          exit 1
+        fi
+    
+    - name: Validate HTML with W3C
+      run: |
+        for file in *.html; do
+          if [ -f "$file" ]; then
+            echo "Validating $file..."
+            curl -s -F "out=json" -F "content=@$file" https://validator.w3.org/nu/ | jq .
+          fi
+        done
+    
+    - name: Security scan
+      run: |
+        # Check for exposed secrets
+        if grep -r "password\|secret\|api[_-]key" . --exclude-dir=node_modules --exclude-dir=.git; then
+          echo "Potential secrets found!"
+          exit 1
+        fi
+    
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results-${{ matrix.node-version }}
+        path: |
+          test-report.txt
+          *.log
+
+  accessibility:
+    runs-on: ubuntu-latest
+    needs: test
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
+    
+    - name: Install dependencies
+      run: |
+        npm ci
+        npm install -g pa11y
+    
+    - name: Start server
+      run: |
+        python3 -m http.server 8000 &
+        sleep 5
+    
+    - name: Run accessibility tests
+      run: |
+        for file in *.html; do
+          if [ -f "$file" ]; then
+            echo "Testing accessibility for $file..."
+            pa11y "http://localhost:8000/$file" || true
+          fi
+        done
+
+  performance:
+    runs-on: ubuntu-latest
+    needs: test
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    
+    - name: Check bundle size
+      run: |
+        echo "Checking file sizes..."
+        du -sh .
+        find . -name "*.html" -exec wc -c {} \; | sort -n
+    
+    - name: Lighthouse CI
+      uses: treosh/lighthouse-ci-action@v9
+      with:
+        urls: |
+          http://localhost:8000/index.html
+          http://localhost:8000/claude-code-primer-v2-complete.html
+        uploadArtifacts: true
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [test, accessibility, performance]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: .

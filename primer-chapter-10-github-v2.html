@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Claude Code Primer v2.0 - Chapter 10: GitHub and CI/CD Integration</title>
@@ -255,10 +253,25 @@
             font-weight: 600;
         }
     </style>
-</head>
+<link rel="stylesheet" href="chapter-nav-style.css"></head>
 <body>
     <div class="version-banner">
-        <h2>Version 2.0 - Fact-Checked Edition</h2>
+        <h2>Version 2.0 - Fact-Checked Edition</h2><nav class="chapter-nav top">
+        <div class="nav-prev">
+            <a href="primer-chapter-09-security-v2.html">
+                <div class="nav-label">← Previous Chapter</div>
+                <div class="nav-title">Chapter 9: Security &amp; Safety</div>
+            </a>
+        </div>
+        <div class="nav-home">
+            <a href="index.html">Table of Contents</a>
+        </div>
+        <div class="nav-next">
+            <a href="primer-chapter-11-cases-v2.html">
+                <div class="nav-label">Next Chapter →</div>
+                <div class="nav-title">Chapter 11: Real-World Cases</div>
+            </a>
+        </div></nav>
         <ul>
             <li>✓ GitHub Actions documentation verified</li>
             <li>✓ CI/CD best practices referenced</li>
@@ -395,7 +408,7 @@ jobs:
     
     <div class="yaml-block">
         <pre>- name: Generate Missing Tests
-  if: steps.coverage.outputs.percentage < 80
+  if: steps.coverage.outputs.percentage &lt; 80
   run: |
     claude-code generate-tests \
       --coverage-report=./coverage/lcov.info \
@@ -543,14 +556,14 @@ jobs:
             </li>
             
             <li id="ref2">
-                Kim, G., Humble, J., Debois, P., & Willis, J. (2016). "The DevOps Handbook." IT Revolution Press.
+                Kim, G., Humble, J., Debois, P., &amp; Willis, J. (2016). "The DevOps Handbook." IT Revolution Press.
                 <a href="https://itrevolution.com/product/the-devops-handbook-second-edition/" target="_blank" rel="noopener">
                     ISBN: 978-1942788003
                 </a>
             </li>
             
             <li id="ref3">
-                Forsgren, N., Humble, J., & Kim, G. (2018). "Accelerate: The Science of Lean Software and DevOps." IT Revolution Press.
+                Forsgren, N., Humble, J., &amp; Kim, G. (2018). "Accelerate: The Science of Lean Software and DevOps." IT Revolution Press.
                 <a href="https://itrevolution.com/product/accelerate/" target="_blank" rel="noopener">
                     ISBN: 978-1942788331
                 </a>
@@ -600,7 +613,7 @@ jobs:
             </li>
             
             <li id="ref11">
-                Pressman, R., & Maxim, B. (2019). "Software Engineering: A Practitioner's Approach." McGraw-Hill.
+                Pressman, R., &amp; Maxim, B. (2019). "Software Engineering: A Practitioner's Approach." McGraw-Hill.
                 <a href="https://www.mheducation.com/highered/product/software-engineering-practitioner-s-approach-pressman-maxim/M9781259872976.html" target="_blank" rel="noopener">
                     ISBN: 978-1259872976
                 </a>
@@ -614,7 +627,7 @@ jobs:
             </li>
             
             <li id="ref13">
-                Gamma, E., Helm, R., Johnson, R., & Vlissides, J. (1994). "Design Patterns: Elements of Reusable Object-Oriented Software." Addison-Wesley.
+                Gamma, E., Helm, R., Johnson, R., &amp; Vlissides, J. (1994). "Design Patterns: Elements of Reusable Object-Oriented Software." Addison-Wesley.
                 <a href="https://www.pearson.com/us/higher-education/program/Gamma-Design-Patterns-Elements-of-Reusable-Object-Oriented-Software/PGM14333.html" target="_blank" rel="noopener">
                     ISBN: 978-0201633610
                 </a>
@@ -687,7 +700,7 @@ jobs:
             </li>
             
             <li id="ref26">
-                Bacchelli, A., & Bird, C. (2013). "Expectations, outcomes, and challenges of modern code review." ICSE '13.
+                Bacchelli, A., &amp; Bird, C. (2013). "Expectations, outcomes, and challenges of modern code review." ICSE '13.
                 <a href="https://ieeexplore.ieee.org/document/6606617" target="_blank" rel="noopener">
                     https://ieeexplore.ieee.org/document/6606617
                 </a>
@@ -730,7 +743,7 @@ jobs:
             </li>
             
             <li id="ref33">
-                Smith, C. U., & Williams, L. G. (2001). "Performance Solutions: A Practical Guide to Creating Responsive, Scalable Software." Addison-Wesley.
+                Smith, C. U., &amp; Williams, L. G. (2001). "Performance Solutions: A Practical Guide to Creating Responsive, Scalable Software." Addison-Wesley.
                 <a href="https://www.pearson.com/us/higher-education/program/Smith-Performance-Solutions-A-Practical-Guide-to-Creating-Responsive-Scalable-Software/PGM168739.html" target="_blank" rel="noopener">
                     ISBN: 978-0201722291
                 </a>
@@ -756,7 +769,7 @@ jobs:
             </li>
             
             <li id="ref38">
-                Chidamber, S. R., & Kemerer, C. F. (1994). "A metrics suite for object oriented design." IEEE Transactions on Software Engineering, 20(6), 476-493.
+                Chidamber, S. R., &amp; Kemerer, C. F. (1994). "A metrics suite for object oriented design." IEEE Transactions on Software Engineering, 20(6), 476-493.
                 <a href="https://ieeexplore.ieee.org/document/295895" target="_blank" rel="noopener">
                     https://ieeexplore.ieee.org/document/295895
                 </a>
@@ -779,7 +792,7 @@ jobs:
             </li>
             
             <li id="ref43">
-                Humble, J., & Farley, D. (2010). "Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation." Addison-Wesley.
+                Humble, J., &amp; Farley, D. (2010). "Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation." Addison-Wesley.
                 <a href="https://www.pearson.com/us/higher-education/program/Humble-Continuous-Delivery-Reliable-Software-Releases-through-Build-Test-and-Deployment-Automation/PGM249879.html" target="_blank" rel="noopener">
                     ISBN: 978-0321601919
                 </a>
@@ -790,7 +803,7 @@ jobs:
             </li>
             
             <li id="ref45">
-                Fraser, G., & Arcuri, A. (2011). "EvoSuite: automatic test suite generation for object-oriented software." ESEC/FSE '11.
+                Fraser, G., &amp; Arcuri, A. (2011). "EvoSuite: automatic test suite generation for object-oriented software." ESEC/FSE '11.
                 <a href="https://dl.acm.org/doi/10.1145/2025113.2025179" target="_blank" rel="noopener">
                     https://dl.acm.org/doi/10.1145/2025113.2025179
                 </a>
@@ -987,5 +1000,20 @@ jobs:
             </li>
         </ol>
     </div>
-</body>
-</html>
+
+<nav class="chapter-nav bottom">
+        <div class="nav-prev">
+            <a href="primer-chapter-09-security-v2.html">
+                <div class="nav-label">← Previous Chapter</div>
+                <div class="nav-title">Chapter 9: Security &amp; Safety</div>
+            </a>
+        </div>
+        <div class="nav-home">
+            <a href="index.html">Table of Contents</a>
+        </div>
+        <div class="nav-next">
+            <a href="primer-chapter-11-cases-v2.html">
+                <div class="nav-label">Next Chapter →</div>
+                <div class="nav-title">Chapter 11: Real-World Cases</div>
+            </a>
+        </div></nav></body></html>

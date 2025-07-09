@@ -1,0 +1,126 @@
+/* Chapter Navigation Styles - Book-like Design */
+.chapter-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5em 0;
+    border-top: 1px solid #2c2c2c;
+    border-bottom: 1px solid #2c2c2c;
+    margin: 2em 0;
+    font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.chapter-nav.top {
+    margin-bottom: 3em;
+    border-top: none;
+}
+
+.chapter-nav.bottom {
+    margin-top: 3em;
+    border-bottom: none;
+}
+
+.chapter-nav a {
+    color: #2c2c2c;
+    text-decoration: none;
+    border-bottom: 1px solid #2c2c2c;
+    padding-bottom: 2px;
+    transition: all 0.2s ease;
+    max-width: 45%;
+}
+
+.chapter-nav a:hover {
+    border-bottom-width: 2px;
+    padding-bottom: 1px;
+}
+
+.nav-prev,
+.nav-next {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+}
+
+.nav-prev {
+    align-items: flex-start;
+    text-align: left;
+}
+
+.nav-next {
+    align-items: flex-end;
+    text-align: right;
+}
+
+.nav-label {
+    font-size: 0.9em;
+    color: #666;
+    font-style: italic;
+}
+
+.nav-title {
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.nav-home {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.nav-home a {
+    border-bottom: 1px solid #999;
+}
+
+/* Mobile First Responsive Design */
+@media (max-width: 768px) {
+    .chapter-nav {
+        flex-direction: column;
+        gap: 1.5em;
+        padding: 1em 0;
+    }
+    
+    .chapter-nav a {
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .nav-prev,
+    .nav-next {
+        width: 100%;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .nav-home {
+        order: -1;
+        margin-bottom: 1em;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .nav-title {
+        font-size: 1em;
+    }
+}
+
+/* Ensure no horizontal scroll */
+* {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* Container constraint for mobile */
+@media (max-width: 768px) {
+    .container,
+    .chapter,
+    .toc-page {
+        padding-left: 1em;
+        padding-right: 1em;
+        max-width: 100vw;
+    }
+}

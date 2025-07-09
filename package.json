@@ -1,24 +1,45 @@
 {
   "name": "claude-code-primer",
-  "version": "1.0.0",
-  "description": "The Story of AI's Greatest Leap Into Software Development",
-  "main": "server.js",
+  "version": "2.1.0",
+  "description": "Claude Code Primer - A Journey into AI-Assisted Development",
+  "main": "index.html",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "test": "node test-suite-comprehensive.js",
+    "test:quick": "node test-report.js",
+    "test:links": "node test-suite.js",
+    "fix:links": "node fix-navigation-links.js",
+    "serve": "python3 -m http.server 8000",
+    "validate": "npm run test",
+    "precommit": "npm test"
   },
   "keywords": [
     "ai",
     "claude",
     "programming",
     "book",
-    "software-development"
+    "software-development",
+    "anthropic",
+    "primer",
+    "education"
   ],
   "author": "Claude Code Collaboration",
-  "license": "MIT",
+  "license": "CC-BY-SA-4.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anthropic/claude-code-primer"
+  },
+  "bugs": {
+    "url": "https://github.com/anthropic/claude-code-primer/issues"
+  },
+  "homepage": "https://github.com/anthropic/claude-code-primer#readme",
   "dependencies": {
     "cheerio": "^1.1.0",
     "markdown-pdf": "^11.0.0",
     "marked": "^9.1.6"
+  },
+  "engines": {
+    "node": ">=14.0.0"
   }
 }

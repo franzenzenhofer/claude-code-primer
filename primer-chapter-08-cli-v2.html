@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Claude Code Primer v2.0 - Chapter 8: The Command Line Interface</title>
@@ -222,10 +220,25 @@
             font-size: 0.9em;
         }
     </style>
-</head>
+<link rel="stylesheet" href="chapter-nav-style.css"></head>
 <body>
     <div class="version-banner">
-        <h2>Version 2.0 - Fact-Checked Edition</h2>
+        <h2>Version 2.0 - Fact-Checked Edition</h2><nav class="chapter-nav top">
+        <div class="nav-prev">
+            <a href="primer-chapter-07-revolution-v2.html">
+                <div class="nav-label">← Previous Chapter</div>
+                <div class="nav-title">Chapter 7: Revolutionizing Development</div>
+            </a>
+        </div>
+        <div class="nav-home">
+            <a href="index.html">Table of Contents</a>
+        </div>
+        <div class="nav-next">
+            <a href="primer-chapter-09-security-v2.html">
+                <div class="nav-label">Next Chapter →</div>
+                <div class="nav-title">Chapter 9: Security &amp; Safety</div>
+            </a>
+        </div></nav>
         <ul>
             <li>✓ CLI commands and features documented</li>
             <li>✓ Installation methods verified</li>
@@ -283,7 +296,7 @@ added 142 packages in 8.392s
         <span class="prompt">$</span> <span class="command">curl -fsSL https://claude.ai/install.sh | sh</span>
         
         <span class="comment"># Windows PowerShell</span>
-        <span class="prompt">></span> <span class="command">iwr -useb https://claude.ai/install.ps1 | iex</span>
+        <span class="prompt">&gt;</span> <span class="command">iwr -useb https://claude.ai/install.ps1 | iex</span>
     </div>
     
     <h2>First Contact</h2>
@@ -496,7 +509,7 @@ export CLAUDE_LOG_LEVEL=debug
     <h3>Build System Integration</h3>
     <div class="terminal-block">
         <span class="comment"># Build tool integration</span>
-        <span class="prompt">$</span> <span class="command">make test 2>&1 | claude -p "Why are these tests failing?"</span>
+        <span class="prompt">$</span> <span class="command">make test 2&gt;&amp;1 | claude -p "Why are these tests failing?"</span>
         <span class="prompt">$</span> <span class="command">npm run build | claude -p "Explain these warnings"</span>
     </div>
     
@@ -602,7 +615,7 @@ export CLAUDE_LOG_LEVEL=debug
             </li>
             
             <li id="ref14">
-                McIlroy, M. D., Pinson, E. N., & Tague, B. A. (1978). "UNIX Time-Sharing System: Foreword." Bell System Technical Journal, 57(6), 1899-1904.
+                McIlroy, M. D., Pinson, E. N., &amp; Tague, B. A. (1978). "UNIX Time-Sharing System: Foreword." Bell System Technical Journal, 57(6), 1899-1904.
                 <a href="https://archive.org/details/bstj57-6-1899" target="_blank" rel="noopener">
                     https://archive.org/details/bstj57-6-1899
                 </a>
@@ -678,7 +691,7 @@ export CLAUDE_LOG_LEVEL=debug
             </li>
             
             <li id="ref30">
-                Robbins, A., & Beebe, N. H. F. (2005). "Classic Shell Scripting." O'Reilly Media.
+                Robbins, A., &amp; Beebe, N. H. F. (2005). "Classic Shell Scripting." O'Reilly Media.
                 <a href="https://www.oreilly.com/library/view/classic-shell-scripting/0596005954/" target="_blank" rel="noopener">
                     ISBN: 978-0596005955
                 </a>
@@ -802,7 +815,7 @@ export CLAUDE_LOG_LEVEL=debug
             </li>
             
             <li id="ref55">
-                Kernighan, B. W., & Pike, R. (1984). "The UNIX Programming Environment." Prentice Hall.
+                Kernighan, B. W., &amp; Pike, R. (1984). "The UNIX Programming Environment." Prentice Hall.
                 <a href="https://www.cs.princeton.edu/~bwk/upe/" target="_blank" rel="noopener">
                     ISBN: 978-0139376818
                 </a>
@@ -855,5 +868,20 @@ export CLAUDE_LOG_LEVEL=debug
             </li>
         </ol>
     </div>
-</body>
-</html>
+
+<nav class="chapter-nav bottom">
+        <div class="nav-prev">
+            <a href="primer-chapter-07-revolution-v2.html">
+                <div class="nav-label">← Previous Chapter</div>
+                <div class="nav-title">Chapter 7: Revolutionizing Development</div>
+            </a>
+        </div>
+        <div class="nav-home">
+            <a href="index.html">Table of Contents</a>
+        </div>
+        <div class="nav-next">
+            <a href="primer-chapter-09-security-v2.html">
+                <div class="nav-label">Next Chapter →</div>
+                <div class="nav-title">Chapter 9: Security &amp; Safety</div>
+            </a>
+        </div></nav></body></html>

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Pre-commit hook to run test suite before every commit
+echo "Running test suite before commit..."
+
+# Run the test suite
+node test-suite.js
+
+# Check if tests passed
+if [ $? -ne 0 ]; then
+    echo "❌ Tests failed! Please fix issues before committing."
+    exit 1
+fi
+
+echo "✅ All tests passed! Proceeding with commit..."
+exit 0
