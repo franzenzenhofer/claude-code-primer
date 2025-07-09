@@ -13,10 +13,11 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Georgia', 'Times New Roman', serif;
             line-height: 1.8;
-            color: #333;
-            background-color: #fafafa;
+            color: #2c2c2c;
+            background-color: #ffffff;
+            font-size: 16px;
         }
         
         /* Book cover page */
@@ -26,31 +27,33 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: #ffffff;
+            color: #2c2c2c;
             text-align: center;
             page-break-after: always;
+            border-bottom: 3px solid #2c2c2c;
         }
         
         .book-cover h1 {
             font-size: 4em;
             margin-bottom: 0.5em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 400;
+            letter-spacing: 0.02em;
         }
         
         .book-cover .subtitle {
             font-size: 1.8em;
             margin-bottom: 2em;
-            opacity: 0.95;
+            font-style: italic;
+            color: #666;
         }
         
         .book-cover .version {
             font-size: 1.4em;
             margin-bottom: 1em;
             padding: 1em 2em;
-            background: rgba(255,255,255,0.2);
-            border-radius: 8px;
-            backdrop-filter: blur(10px);
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
         }
         
         .book-cover .stats {
@@ -65,13 +68,14 @@
         
         .book-cover .stat-number {
             font-size: 2.5em;
-            font-weight: bold;
+            font-weight: 600;
             display: block;
+            font-family: 'Georgia', serif;
         }
         
         .book-cover .stat-label {
             font-size: 1em;
-            opacity: 0.9;
+            color: #666;
         }
         
         /* Table of contents */
@@ -84,11 +88,12 @@
         
         .toc-page h2 {
             font-size: 2.5em;
-            color: #2a2a2a;
+            color: #2c2c2c;
             margin-bottom: 1em;
             text-align: center;
-            border-bottom: 3px solid #667eea;
+            border-bottom: 1px solid #2c2c2c;
             padding-bottom: 0.5em;
+            font-weight: 400;
         }
         
         .toc-page ol {
@@ -454,7 +459,7 @@
             <p style="font-size: 1.2em; color: #666; margin: 2em 0;">
                 Thank you for reading the Claude Code Primer v2.0 preview.
             </p>
-            <p style="font-size: 1.1em; color: #667eea;">
+            <p style="font-size: 1.1em; color: #2c2c2c;">
                 The complete fact-checked edition with all 12 chapters is coming soon.
             </p>
             <p style="margin-top: 3em; color: #999;">
@@ -462,5 +467,97 @@
             </p>
         </div>
     </div>
+    
+    <!-- Responsive design improvements -->
+    <style>
+        /* Responsive design for book-like reading experience */
+        @media (max-width: 768px) {
+            .book-cover {
+                padding: 2em 1em;
+            }
+            
+            .book-cover h1 {
+                font-size: 2.5em;
+            }
+            
+            .book-cover .subtitle {
+                font-size: 1.3em;
+            }
+            
+            .book-cover .version {
+                font-size: 1.1em;
+                padding: 0.8em 1.5em;
+            }
+            
+            .book-cover .stats {
+                flex-direction: column;
+                gap: 1em;
+            }
+            
+            .toc-page {
+                padding: 2em 1em;
+            }
+            
+            .toc-page h2 {
+                font-size: 2em;
+            }
+            
+            .chapter {
+                padding: 2em 1em;
+            }
+            
+            .chapter h1 {
+                font-size: 2em;
+            }
+            
+            .chapter h2 {
+                font-size: 1.5em;
+            }
+            
+            .chapter-number {
+                font-size: 1.2em;
+                padding: 0.5em 1em;
+            }
+            
+            .chapter-meta {
+                font-size: 0.9em;
+            }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .book-cover h1 {
+                font-size: 3.5em;
+            }
+            
+            .toc-page {
+                padding: 3em 2em;
+            }
+            
+            .chapter {
+                padding: 3em 2em;
+            }
+        }
+        
+        @media print {
+            .book-cover {
+                background: white;
+                color: black;
+                border-bottom: 3px solid black;
+            }
+            
+            .book-cover .version {
+                background: white;
+                border: 1px solid black;
+            }
+            
+            body {
+                background: white;
+            }
+            
+            .toc-page h2 {
+                border-bottom: 1px solid black;
+            }
+        }
+    </style>
 </body>
 </html>
