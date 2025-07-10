@@ -1,18 +1,18 @@
 {
-  "timestamp": "2025-07-09T20:46:54.258Z",
+  "timestamp": "2025-07-09T20:53:25.528Z",
   "url": "http://localhost:8000",
   "passed": 10,
   "failed": 0,
   "screenshots": [
-    "screenshots/homepage-1752094002365.png",
-    "screenshots/mobile-homepage-1752094002783.png",
-    "screenshots/chapter-navigation-1752094003656.png",
-    "screenshots/responsive-mobile-1752094005377.png",
-    "screenshots/responsive-tablet-1752094006087.png",
-    "screenshots/responsive-desktop-1752094006889.png",
-    "screenshots/typography-check-1752094012023.png",
-    "screenshots/complete-book-1752094013159.png",
-    "screenshots/print-preview-1752094013795.png"
+    "screenshots/homepage-1752094393693.png",
+    "screenshots/mobile-homepage-1752094394152.png",
+    "screenshots/chapter-navigation-1752094395045.png",
+    "screenshots/responsive-mobile-1752094396661.png",
+    "screenshots/responsive-tablet-1752094397386.png",
+    "screenshots/responsive-desktop-1752094398133.png",
+    "screenshots/typography-check-1752094403335.png",
+    "screenshots/complete-book-1752094404426.png",
+    "screenshots/print-preview-1752094405049.png"
   ],
   "details": {
     "passed": [
