@@ -1,135 +1,45 @@
-# Claude Code Primer - Test Suite Documentation
+# Claude Code Primer
 
-## Overview
-Comprehensive testing framework for the Claude Code Primer project, ensuring quality, accessibility, and performance.
+**The Story of AI's Greatest Leap Into Software Development**
 
-## Quick Start
+📖 Read online: https://claude-code-primer.franzai.com
 
-```bash
-# Install dependencies
-npm install
+## About This Book
 
-# Run all tests
-npm test
+The Claude Code Primer chronicles the revolutionary transformation of software development through AI. From the mathematical breakthroughs that made language models possible to the practical reality of millions coding with AI assistance, this book captures a pivotal moment in computing history.
 
-# Quick test report
-npm run test:quick
+## Book Structure
 
-# Fix common issues
-npm run fix:links
+### 12 Chapters, One Story
 
-# Start local server
-npm run serve
-```
+1. **Origins** - From Language Models to Living Code
+2. **The Transformer Revolution** - Attention Is Indeed All You Need  
+3. **Constitutional AI** - Teaching AI to Be Good
+4. **Building Claude** - From Theory to Practice
+5. **From API to Code** - The Evolution of Interface
+6. **Model Context Protocol** - The Universal Language
+7. **Revolutionizing Development** - The New Way We Code
+8. **Command Line Interface** - Where AI Meets Terminal
+9. **Security Architecture** - Building Trustworthy AI Systems
+10. **GitHub and CI/CD Integration** - Seamless Development Workflows
+11. **Real-World Case Studies** - Success Stories and Lessons Learned
+12. **Ethics and Responsibility** - The Moral Imperatives of AI Development
 
-## Test Categories
+## Design Philosophy
 
-### 1. File Structure Tests
-- Validates all required files exist
-- Checks directory structure
-- Ensures chapter files are present
+- **Simple**: Black text, white background, blue links. Nothing else.
+- **Readable**: Georgia serif font, generous spacing, book-like layout
+- **Fast**: Minimal HTML, no JavaScript frameworks, instant loading
+- **Accessible**: Works on all devices, all browsers, even printed
 
-### 2. HTML Validation
-- DOCTYPE validation
-- Meta tags verification
-- Title tag checks
-- Image reference validation
+## Technical Details
 
-### 3. Link Validation
-- Internal link checking
-- Navigation link verification
-- Anchor link validation
-- External link status (sample)
-
-### 4. CSS Validation
-- Syntax error detection
-- Common CSS mistakes
-- Stylesheet loading verification
-
-### 5. JavaScript Tests
-- Syntax validation
-- Console.log detection
-- Debugger statement checks
-
-### 6. Accessibility Tests
-- Alt text for images
-- Heading hierarchy
-- Form labels
-- ARIA attributes
-
-### 7. Performance Tests
-- File size monitoring
-- Image optimization checks
-- Large file warnings
-
-### 8. Security Tests
-- Inline event handler detection
-- eval() usage detection
-- Hardcoded credential scanning
-- innerHTML usage warnings
-
-### 9. SEO Tests
-- Meta description validation
-- Open Graph tags
-- Canonical URL checks
-
-### 10. Content Tests
-- Lorem Ipsum detection
-- TODO comment scanning
-- Word count validation
-- Markdown syntax in HTML
-
-### 11. Git Repository Tests
-- Repository status
-- Uncommitted changes
-- .gitignore validation
-
-### 12. Build & Dependencies
-- package.json validation
-- Test script presence
-- Lock file verification
-
-## Using Make
-
-```bash
-make help          # Show all commands
-make test          # Run comprehensive tests
-make test-quick    # Quick status check
-make clean         # Remove generated files
-make serve         # Start local server
-make watch         # Auto-test on changes
-make hooks         # Setup git hooks
-```
-
-## CI/CD Integration
-
-Place `test-ci.yml` in `.github/workflows/` for GitHub Actions:
-- Runs on push, PR, and daily
-- Tests multiple Node versions
-- Accessibility testing with pa11y
-- Performance testing with Lighthouse
-- Auto-deploy to GitHub Pages
-
-## Git Hooks
-
-Enable pre-commit testing:
-```bash
-git config core.hooksPath .githooks
-```
-
-## Test Output
-
-- ✅ Green: Tests passed
-- ⚠️ Yellow: Warnings (non-critical)
-- ❌ Red: Failed tests (must fix)
-
-## Contributing
-
-1. Run tests before committing
-2. Fix all red errors
-3. Address yellow warnings when possible
-4. Add tests for new features
+The book is built from markdown files and compiled to clean HTML. Each chapter stands alone but contributes to the larger narrative of how AI transformed programming.
 
 ## License
 
-CC-BY-SA 4.0
+Creative Commons BY-SA 4.0
+
+---
+
+*A book written in the age it describes.*
