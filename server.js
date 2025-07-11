@@ -5,11 +5,11 @@ const { marked } = require('marked');
 
 const PORT = 80;
 
-// Configure marked for better rendering
+// Configure marked for better rendering with security
 marked.setOptions({
   gfm: true,
   breaks: true,
-  sanitize: false,
+  sanitize: true,
   smartLists: true,
   smartypants: true
 });
@@ -213,8 +213,72 @@ function generateTableOfContents() {
   return tocHTML;
 }
 
+// Security headers configuration
+const securityHeaders = {
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'DENY',
+  'X-XSS-Protection': '1; mode=block',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'Permissions-Policy': 'geolocation=(), microphone=(), camera=(), payment=(), usb=(), accelerometer=(), gyroscope=(), magnetometer=()',
+  'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
+  'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+};
+
+// Simple rate limiting store
+const rateLimitStore = new Map();
+const RATE_LIMIT_WINDOW = 60000; // 1 minute
+const RATE_LIMIT_MAX_REQUESTS = 100; // 100 requests per minute per IP
+
+function rateLimit(req, res) {
+  const clientIP = req.connection.remoteAddress || req.headers['x-forwarded-for'] || 'unknown';
+  const now = Date.now();
+  const windowStart = now - RATE_LIMIT_WINDOW;
+  
+  if (!rateLimitStore.has(clientIP)) {
+    rateLimitStore.set(clientIP, []);
+  }
+  
+  const requests = rateLimitStore.get(clientIP);
+  // Remove old requests outside the window
+  const recentRequests = requests.filter(timestamp => timestamp > windowStart);
+  
+  if (recentRequests.length >= RATE_LIMIT_MAX_REQUESTS) {
+    res.writeHead(429, { 
+      'Content-Type': 'text/html',
+      'Retry-After': '60',
+      ...securityHeaders
+    });
+    res.end('<h1>429 - Too Many Requests</h1><p>Please try again in a moment.</p>');
+    return false;
+  }
+  
+  recentRequests.push(now);
+  rateLimitStore.set(clientIP, recentRequests);
+  
+  // Clean up old entries periodically
+  if (rateLimitStore.size > 1000) {
+    const oldestAllowed = now - RATE_LIMIT_WINDOW;
+    for (const [ip, timestamps] of rateLimitStore.entries()) {
+      const recentOnly = timestamps.filter(t => t > oldestAllowed);
+      if (recentOnly.length === 0) {
+        rateLimitStore.delete(ip);
+      } else {
+        rateLimitStore.set(ip, recentOnly);
+      }
+    }
+  }
+  
+  return true;
+}
+
 const server = http.createServer((req, res) => {
   console.log(`${new Date().toISOString()} - ${req.method} ${req.url} from ${req.connection.remoteAddress}`);
+  
+  // Apply rate limiting
+  if (!rateLimit(req, res)) {
+    return;
+  }
+  
   let filePath = req.url === '/' ? '/' : req.url;
   
   // Serve table of contents for root
@@ -223,7 +287,7 @@ const server = http.createServer((req, res) => {
     const indexPath = path.join(__dirname, 'index.html');
     if (fs.existsSync(indexPath)) {
       const html = fs.readFileSync(indexPath, 'utf8');
-      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.writeHead(200, { 'Content-Type': 'text/html', ...securityHeaders });
       res.end(html);
       return;
     }
@@ -232,7 +296,7 @@ const server = http.createServer((req, res) => {
     const tocHTML = generateTableOfContents();
     const html = generateHTML(tocHTML, 'Claude Code: A Primer - Table of Contents');
     
-    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.writeHead(200, { 'Content-Type': 'text/html', ...securityHeaders });
     res.end(html);
     return;
   }
@@ -314,7 +378,7 @@ const server = http.createServer((req, res) => {
 </body>
 </html>`;
     
-    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.writeHead(200, { 'Content-Type': 'text/html', ...securityHeaders });
     res.end(fullHTML);
     return;
   }
@@ -327,11 +391,11 @@ const server = http.createServer((req, res) => {
   if (filePath.endsWith('.html')) {
     if (fs.existsSync(fullPath)) {
       const html = fs.readFileSync(fullPath, 'utf8');
-      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.writeHead(200, { 'Content-Type': 'text/html', ...securityHeaders });
       res.end(html);
       return;
     } else {
-      res.writeHead(404, { 'Content-Type': 'text/html' });
+      res.writeHead(404, { 'Content-Type': 'text/html', ...securityHeaders });
       res.end('<h1>404 - Page Not Found</h1>');
       return;
     }
@@ -339,7 +403,7 @@ const server = http.createServer((req, res) => {
 
   // Check if file exists and is a markdown file
   if (!fs.existsSync(fullPath) || !filePath.endsWith('.md')) {
-    res.writeHead(404, { 'Content-Type': 'text/html' });
+    res.writeHead(404, { 'Content-Type': 'text/html', ...securityHeaders });
     res.end(generateHTML('<h1>404 - Chapter Not Found</h1><p><a href="/">← Back to Table of Contents</a></p>'));
     return;
   }
@@ -381,11 +445,11 @@ const server = http.createServer((req, res) => {
     const pageTitle = filePath.replace('.md', '').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
     const fullHTML = generateHTML(navHTML, `${pageTitle} - Claude Code: A Primer`);
 
-    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.writeHead(200, { 'Content-Type': 'text/html', ...securityHeaders });
     res.end(fullHTML);
   } catch (error) {
     console.error('Error reading file:', error);
-    res.writeHead(500, { 'Content-Type': 'text/html' });
+    res.writeHead(500, { 'Content-Type': 'text/html', ...securityHeaders });
     res.end(generateHTML('<h1>Error</h1><p>Could not load chapter. <a href="/">← Back to Table of Contents</a></p>'));
   }
 });
