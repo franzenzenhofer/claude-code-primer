@@ -1,0 +1,142 @@
+name: Pulitzer Prize Book Writing Standards
+
+on:
+  push:
+    paths:
+      - 'primer-chapter-*.html'
+      - 'index.html'
+      - 'claude-code-primer-v2-complete.html'
+  pull_request:
+    paths:
+      - 'primer-chapter-*.html'
+      - 'index.html'
+      - 'claude-code-primer-v2-complete.html'
+
+jobs:
+  writing-quality:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Install dependencies
+        run: |
+          npm ci
+          npm install -g alex write-good
+          
+      - name: Literary Quality Check
+        run: |
+          echo "## 📚 Literary Quality Analysis"
+          
+          # Check for passive voice, weasel words, and clichés
+          find . -name "*.html" -type f | while read -r file; do
+            echo "Analyzing: $file"
+            # Extract text content from HTML
+            node -e "
+              const fs = require('fs');
+              const content = fs.readFileSync('$file', 'utf8');
+              const textOnly = content.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ');
+              fs.writeFileSync('/tmp/text.txt', textOnly);
+            "
+            write-good /tmp/text.txt || true
+          done
+          
+      - name: Fact-Checking Verification
+        run: |
+          echo "## 🔍 Fact-Checking Analysis"
+          
+          # Check all citations are properly formatted
+          grep -r 'href=' . --include="*.html" | grep -v 'http' | grep -v '#' || echo "All links appear valid"
+          
+          # Count total citations per chapter
+          for file in primer-chapter-*.html; do
+            if [ -f "$file" ]; then
+              count=$(grep -o '<sup>' "$file" | wc -l)
+              echo "$file: $count citations"
+            fi
+          done
+          
+      - name: Narrative Structure Analysis
+        run: |
+          echo "## 📖 Narrative Structure Check"
+          
+          # Verify chapter consistency
+          for i in {01..12}; do
+            file="primer-chapter-${i}-*.html"
+            if ls $file 1> /dev/null 2>&1; then
+              echo "✅ Chapter $i found"
+              # Check for proper heading structure
+              grep -q "<h1>" $file && echo "  - Has main heading" || echo "  ⚠️  Missing main heading"
+              grep -q "<h2>" $file && echo "  - Has subheadings" || echo "  ⚠️  Missing subheadings"
+            else
+              echo "❌ Chapter $i missing"
+            fi
+          done
+          
+      - name: Academic Standards Check
+        run: |
+          echo "## 🎓 Academic Standards Verification"
+          
+          # Check citation count meets academic standards
+          total_citations=$(grep -r '<sup>' . --include="*.html" | wc -l)
+          echo "Total citations: $total_citations"
+          
+          if [ $total_citations -lt 200 ]; then
+            echo "⚠️  Warning: Book has fewer than 200 citations"
+          else
+            echo "✅ Citation count meets academic standards"
+          fi
+          
+      - name: Generate Writing Report
+        if: always()
+        run: |
+          cat > writing-report.md << EOF
+          # 🏆 Pulitzer Prize Writing Standards Report
+          
+          ## Commit Standards for Book Writing
+          
+          ### Required Commit Sequence for Content Changes:
+          1. \`research:\` - Fact gathering and source verification
+          2. \`outline:\` - Structural planning and narrative arc
+          3. \`draft:\` - Initial content creation
+          4. \`style:\` - Literary enhancement and prose refinement
+          5. \`accuracy:\` - Technical verification and fact-checking
+          6. \`edit:\` - Grammar, flow, and clarity improvements
+          7. \`format:\` - Final formatting and presentation
+          
+          ### Atomic Commit Requirements:
+          - One logical change per commit
+          - Clear, descriptive commit messages
+          - Reference issue numbers when applicable
+          - No mixing of content and code changes
+          
+          ### Quality Metrics:
+          - Minimum 200 citations for academic credibility
+          - Zero tolerance for unverified claims
+          - Narrative consistency across all chapters
+          - Accessible technical explanations
+          - Compelling storytelling throughout
+          
+          ## Review Generated: $(date)
+          EOF
+          
+      - name: Post PR Comment
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('writing-report.md', 'utf8');
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: report
+            });

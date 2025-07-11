@@ -1,0 +1,107 @@
+/* Chapter Navigation Styles - Performance Optimized */
+
+/* Navigation container */
+.chapter-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #e0e0e0;
+    z-index: 1000;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Navigation links */
+.chapter-nav a {
+    display: inline-block;
+    margin: 0 0.5rem;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: #333;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+}
+
+.chapter-nav a:hover {
+    background-color: #f0f0f0;
+}
+
+.chapter-nav a.active {
+    background-color: #007acc;
+    color: white;
+}
+
+/* Chapter navigation buttons */
+.chapter-nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-prev, .nav-next {
+    padding: 0.5rem 1rem;
+    background: #007acc;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.nav-prev:hover, .nav-next:hover {
+    background: #005a9e;
+}
+
+.nav-prev:disabled, .nav-next:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* Chapter title in nav */
+.chapter-title {
+    font-weight: 600;
+    color: #333;
+    margin: 0 1rem;
+    flex-grow: 1;
+    text-align: center;
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+    .chapter-nav {
+        padding: 0.5rem;
+    }
+    
+    .chapter-nav a {
+        margin: 0 0.25rem;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    
+    .chapter-title {
+        font-size: 0.9rem;
+        margin: 0 0.5rem;
+    }
+    
+    .nav-prev, .nav-next {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Content padding to account for fixed nav */
+body.has-chapter-nav {
+    padding-top: 60px;
+}
+
+@media (max-width: 768px) {
+    body.has-chapter-nav {
+        padding-top: 50px;
+    }
+}

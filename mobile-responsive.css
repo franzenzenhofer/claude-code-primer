@@ -1,0 +1,469 @@
+
+/* Mobile-First Responsive Design for Claude Code Primer */
+
+/* Base Mobile Styles (320px+) */
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #fff;
+    font-size: 18px; /* Larger base font for mobile */
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+/* Mobile Typography */
+h1 {
+    font-size: 2.2em;
+    line-height: 1.2;
+    margin: 0.5em 0;
+    font-weight: 400;
+}
+
+h2 {
+    font-size: 1.8em;
+    line-height: 1.3;
+    margin: 0.8em 0 0.5em 0;
+    font-weight: 500;
+}
+
+h3 {
+    font-size: 1.4em;
+    line-height: 1.4;
+    margin: 0.6em 0 0.4em 0;
+    font-weight: 500;
+}
+
+p {
+    margin: 0 0 1.2em 0;
+    line-height: 1.7;
+}
+
+/* Touch-Friendly Links */
+a {
+    color: #0066cc;
+    text-decoration: none;
+    padding: 0.2em 0;
+    margin: -0.2em 0;
+    min-height: 44px; /* Minimum touch target */
+    display: inline-block;
+    border-radius: 3px;
+    transition: background-color 0.2s ease;
+}
+
+a:hover, a:focus {
+    background-color: rgba(0, 102, 204, 0.1);
+    text-decoration: underline;
+}
+
+/* Mobile Container */
+.container {
+    padding: 1rem;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Mobile Hero Section */
+.hero {
+    padding: 2rem 1rem;
+    text-align: center;
+    background: #fff;
+    border-bottom: 2px solid #333;
+}
+
+.hero h1 {
+    font-size: 2.5em;
+    margin: 0 0 0.5em 0;
+}
+
+.hero .subtitle {
+    font-size: 1.2em;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 1.5em;
+}
+
+/* Touch-Friendly Navigation */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #eee;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-nav-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    padding: 0.5rem;
+    min-height: 44px;
+    min-width: 44px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.mobile-nav-toggle:hover {
+    background-color: #f0f0f0;
+}
+
+.mobile-nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-bottom: 1px solid #eee;
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+.mobile-nav-menu.open {
+    display: block;
+}
+
+.mobile-nav-item {
+    display: block;
+    padding: 1rem;
+    border-bottom: 1px solid #f0f0f0;
+    color: #333;
+    text-decoration: none;
+    min-height: 44px;
+    font-size: 1.1em;
+}
+
+.mobile-nav-item:hover {
+    background-color: #f8f9fa;
+}
+
+/* Chapter Cards - Mobile Optimized */
+.chapter-card {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    border-left: 4px solid #0066cc;
+    min-height: 44px;
+    transition: all 0.2s ease;
+}
+
+.chapter-card:hover, .chapter-card:focus {
+    background: #e9ecef;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.chapter-card h3 {
+    margin: 0 0 0.5em 0;
+    font-size: 1.3em;
+    color: #333;
+}
+
+.chapter-card p {
+    margin: 0 0 1em 0;
+    color: #666;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+/* Reading Progress Indicator */
+.reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, #0066cc, #00a2ff);
+    z-index: 1001;
+    transition: width 0.1s ease;
+}
+
+/* Collapsible Sections */
+.collapsible {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    margin: 1rem 0;
+    overflow: hidden;
+}
+
+.collapsible-header {
+    background: #e9ecef;
+    padding: 1rem;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-size: 1.1em;
+    font-weight: 500;
+    min-height: 44px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.collapsible-header:hover {
+    background: #dee2e6;
+}
+
+.collapsible-content {
+    padding: 1rem;
+    display: none;
+}
+
+.collapsible-content.open {
+    display: block;
+}
+
+.collapsible-arrow {
+    transition: transform 0.2s ease;
+}
+
+.collapsible-arrow.open {
+    transform: rotate(180deg);
+}
+
+/* Mobile-Optimized Tables */
+.mobile-table {
+    width: 100%;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+}
+
+th, td {
+    padding: 0.75rem 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+    min-height: 44px;
+}
+
+th {
+    background: #f8f9fa;
+    font-weight: 600;
+}
+
+/* Mobile Code Blocks */
+pre {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    padding: 1rem;
+    overflow-x: auto;
+    font-size: 0.85em;
+    line-height: 1.4;
+}
+
+code {
+    background: #f1f3f4;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+/* Touch-Friendly Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    margin: 0.5rem 0.5rem 0.5rem 0;
+    background: #0066cc;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    border: none;
+    font-size: 1rem;
+    min-height: 44px;
+    min-width: 44px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.btn:hover, .btn:focus {
+    background: #0052a3;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: #6c757d;
+}
+
+.btn-secondary:hover {
+    background: #545b62;
+}
+
+/* Mobile Footer */
+.footer {
+    background: #333;
+    color: white;
+    padding: 2rem 1rem;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.footer a {
+    color: #adb5bd;
+    min-height: 44px;
+}
+
+/* Tablet Styles (768px+) */
+@media (min-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+    
+    .container {
+        padding: 2rem;
+        max-width: 750px;
+    }
+    
+    .hero {
+        padding: 3rem 2rem;
+    }
+    
+    .hero h1 {
+        font-size: 3em;
+    }
+    
+    .mobile-nav {
+        display: none;
+    }
+    
+    .chapter-card {
+        padding: 2rem;
+    }
+    
+    .collapsible-content {
+        display: block;
+    }
+    
+    .collapsible-header {
+        cursor: default;
+    }
+    
+    .collapsible-arrow {
+        display: none;
+    }
+}
+
+/* Desktop Styles (1024px+) */
+@media (min-width: 1024px) {
+    .container {
+        max-width: 900px;
+        padding: 2rem;
+    }
+    
+    .hero h1 {
+        font-size: 3.5em;
+    }
+    
+    .chapter-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}
+
+/* Large Desktop (1200px+) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1100px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .mobile-nav,
+    .reading-progress,
+    .collapsible-arrow {
+        display: none;
+    }
+    
+    .collapsible-content {
+        display: block !important;
+    }
+    
+    body {
+        font-size: 12pt;
+        line-height: 1.4;
+    }
+    
+    .chapter-card {
+        break-inside: avoid;
+        border: 1px solid #000;
+    }
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1a1a;
+        color: #e0e0e0;
+    }
+    
+    .hero {
+        background: #1a1a1a;
+        border-color: #444;
+    }
+    
+    .chapter-card {
+        background: #2a2a2a;
+        border-color: #444;
+        color: #e0e0e0;
+    }
+    
+    .collapsible {
+        background: #2a2a2a;
+        border-color: #444;
+    }
+    
+    .collapsible-header {
+        background: #333;
+    }
+    
+    a {
+        color: #66b3ff;
+    }
+}
+
+/* Focus Indicators for Accessibility */
+*:focus {
+    outline: 2px solid #0066cc;
+    outline-offset: 2px;
+}
+
+button:focus,
+a:focus {
+    outline: 2px solid #0066cc;
+    outline-offset: 2px;
+}

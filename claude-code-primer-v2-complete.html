@@ -1,583 +1,172 @@
-<!DOCTYPE html><html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claude Code Primer v2.0 - Complete Book (Fact-Checked Edition)</title>
-    <style>
-        /* Reset and base styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Georgia', 'Times New Roman', serif;
-            line-height: 1.8;
-            color: #2c2c2c;
-            background-color: #ffffff;
-            font-size: 16px;
-        }
-        
-        /* Book cover page */
-        .book-cover {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: #ffffff;
-            color: #2c2c2c;
-            text-align: center;
-            page-break-after: always;
-            border-bottom: 3px solid #2c2c2c;
-        }
-        
-        .book-cover h1 {
-            font-size: 4em;
-            margin-bottom: 0.5em;
-            font-weight: 400;
-            letter-spacing: 0.02em;
-        }
-        
-        .book-cover .subtitle {
-            font-size: 1.8em;
-            margin-bottom: 2em;
-            font-style: italic;
-            color: #666;
-        }
-        
-        .book-cover .version {
-            font-size: 1.4em;
-            margin-bottom: 1em;
-            padding: 1em 2em;
-            background: #f8f9fa;
-            border: 1px solid #dee2e6;
-        }
-        
-        .book-cover .stats {
-            display: flex;
-            gap: 3em;
-            margin-top: 2em;
-        }
-        
-        .book-cover .stat {
-            text-align: center;
-        }
-        
-        .book-cover .stat-number {
-            font-size: 2.5em;
-            font-weight: 600;
-            display: block;
-            font-family: 'Georgia', serif;
-        }
-        
-        .book-cover .stat-label {
-            font-size: 1em;
-            color: #666;
-        }
-        
-        /* Table of contents */
-        .toc-page {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 4em 2em;
-            page-break-after: always;
-        }
-        
-        .toc-page h2 {
-            font-size: 2.5em;
-            color: #2c2c2c;
-            margin-bottom: 1em;
-            text-align: center;
-            border-bottom: 1px solid #2c2c2c;
-            padding-bottom: 0.5em;
-            font-weight: 400;
-        }
-        
-        .toc-page ol {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .toc-page li {
-            margin: 1em 0;
-            padding: 0.5em;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        
-        .toc-page a {
-            color: #667eea;
-            text-decoration: none;
-            font-size: 1.2em;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .toc-page a:hover {
-            color: #764ba2;
-        }
-        
-        .toc-page .page-num {
-            color: #999;
-            font-size: 0.9em;
-        }
-        
-        /* Chapter styles */
-        .chapter {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 4em 2em;
-            page-break-before: always;
-        }
-        
-        .chapter-header {
-            margin-bottom: 3em;
-        }
-        
-        .chapter-number {
-            color: #667eea;
-            font-size: 1.2em;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 0.5em;
-        }
-        
-        .chapter h1 {
-            font-size: 3em;
-            color: #1a1a1a;
-            margin-bottom: 0.5em;
-            line-height: 1.2;
-        }
-        
-        .chapter-meta {
-            color: #666;
-            font-size: 0.9em;
-            margin-bottom: 2em;
-            padding-bottom: 1em;
-            border-bottom: 2px solid #e0e0e0;
-        }
-        
-        .chapter h2 {
-            color: #2a2a2a;
-            margin: 2em 0 1em;
-            font-size: 2em;
-        }
-        
-        .chapter h3 {
-            color: #3a3a3a;
-            margin: 1.5em 0 0.8em;
-            font-size: 1.5em;
-        }
-        
-        .chapter p {
-            margin-bottom: 1.2em;
-            text-align: justify;
-        }
-        
-        .chapter blockquote {
-            font-style: italic;
-            color: #555;
-            border-left: 4px solid #667eea;
-            padding-left: 1em;
-            margin: 2em 0;
-            font-size: 1.1em;
-        }
-        
-        /* Citations */
-        sup {
-            font-size: 0.75em;
-            vertical-align: super;
-            line-height: 0;
-        }
-        
-        .citation {
-            text-decoration: none;
-            color: #667eea;
-            font-weight: 600;
-        }
-        
-        .citation:hover {
-            text-decoration: underline;
-            color: #764ba2;
-        }
-        
-        /* References section */
-        .references {
-            margin-top: 4em;
-            padding-top: 2em;
-            border-top: 2px solid #e0e0e0;
-        }
-        
-        .references h2 {
-            font-size: 1.5em;
-            margin-bottom: 1em;
-            color: #2a2a2a;
-        }
-        
-        .references ol {
-            font-size: 0.9em;
-            line-height: 1.6;
-        }
-        
-        .references li {
-            margin-bottom: 1em;
-            padding-bottom: 0.5em;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        
-        /* Fact-check badges */
-        .fact-check-badge {
-            display: inline-block;
-            background: #28a745;
-            color: white;
-            padding: 0.2em 0.6em;
-            border-radius: 3px;
-            font-size: 0.8em;
-            margin-left: 0.5em;
-        }
-        
-        .unverified {
-            background: #ffc107;
-            color: #333;
-        }
-        
-        /* Print styles */
-        @media print {
-            body {
-                background: white;
-            }
-            
-            .chapter {
-                padding: 1em;
-            }
-            
-            .book-cover {
-                background: white;
-                color: #333;
-            }
-            
-            .book-cover h1 {
-                color: #667eea;
-            }
-            
-            a {
-                color: #333;
-                text-decoration: none;
-            }
-        }
-        
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .book-cover h1 {
-                font-size: 2.5em;
-            }
-            
-            .chapter h1 {
-                font-size: 2em;
-            }
-            
-            .chapter {
-                padding: 2em 1em;
-            }
-            
-            .book-cover .stats {
-                flex-direction: column;
-                gap: 1em;
-            }
-        }
-    </style>
-<link rel="stylesheet" href="chapter-nav-style.css"><link rel="stylesheet" href="word-break-fix.css">
-    <style id="word-break-critical">
-        /* Critical word-break rules for immediate render */
-        * { max-width: 100%; box-sizing: border-box; }
-        body { overflow-x: hidden; word-wrap: break-word; overflow-wrap: break-word; }
-        p, h1, h2, h3, h4, h5, h6, a, span, div, li { 
-            word-wrap: break-word; 
-            overflow-wrap: break-word; 
-        }
-        @media (max-width: 768px) {
-            body { hyphens: auto; -webkit-hyphens: auto; }
-            .container { max-width: calc(100vw - 2rem); }
-        }
-    </style></head>
-<body>
-    <!-- Book Cover -->
-    <div class="book-cover">
-        <h1>Claude Code Primer</h1>
-        <p class="subtitle">The Definitive Guide to AI-Assisted Development</p>
-        <div class="version">Version 2.0 - Fact-Checked Edition</div>
-        <div class="stats">
-            <div class="stat">
-                <span class="stat-number">347</span>
-                <span class="stat-label">Claims Examined</span>
-            </div>
-            <div class="stat">
-                <span class="stat-number">286</span>
-                <span class="stat-label">Verified Sources</span>
-            </div>
-            <div class="stat">
-                <span class="stat-number">12</span>
-                <span class="stat-label">Chapters</span>
-            </div>
-        </div>
-    </div>
-    <nav class="chapter-nav top">
-        <div class="nav-home" style="width: 100%; text-align: center;">
-            <a href="index.html">← Back to Table of Contents</a>
-        </div>
-    </nav>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+    <!-- Enhanced SEO Meta Tags -->
+    <meta name="description" content="Claude Code Primer - The definitive guide to AI-assisted software development with practical examples and expert insights.">
+    <meta name="keywords" content="Claude Code, AI programming, artificial intelligence development, Claude AI, Anthropic, AI assistant">
+    <meta name="author" content="Claude Code Collaboration, Anthropic">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
+    <meta name="googlebot" content="index,follow">
+    <link rel="canonical" href="https://claude-code-primer.franzai.com/claude-code-primer-v2-complete.html">
+    
+    <!-- OpenGraph Tags for Social Media -->
+    <meta property="og:title" content="claude code primer v2 complete - Claude Code Primer">
+    <meta property="og:description" content="Claude Code Primer - The definitive guide to AI-assisted software development with practical examples and expert insights.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://claude-code-primer.franzai.com/claude-code-primer-v2-complete.html">
+    <meta property="og:image" content="https://claude-code-primer.franzai.com/assets/social-preview.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Claude Code Primer - AI Development Guide">
+    <meta property="og:site_name" content="Claude Code Primer">
+    <meta property="og:locale" content="en_US">
+    
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@AnthropicAI">
+    <meta name="twitter:creator" content="@AnthropicAI">
+    <meta name="twitter:title" content="claude code primer v2 complete - Claude Code Primer">
+    <meta name="twitter:description" content="Claude Code Primer - The definitive guide to AI-assisted software development with practical examples and expert insights.">
+    <meta name="twitter:image" content="https://claude-code-primer.franzai.com/assets/social-preview.jpg">
+    <meta name="twitter:image:alt" content="Claude Code Primer - AI Development Guide">
+    
+    <!-- Additional SEO Tags -->
+    <meta name="application-name" content="Claude Code Primer">
+    <meta name="msapplication-TileColor" content="#0066cc">
+    <meta name="theme-color" content="#0066cc">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<meta name="author" content="Claude Code Collaboration"><meta name="robots" content="index,follow"><link rel="canonical" href="https://claude-code-primer.franzai.com/claude-code-primer-v2-complete.html"><meta property="og:title" content="Claude Code Primer - AI-Assisted Development Guide"><meta property="og:description" content="The definitive guide to AI-assisted software development with Claude Code. Learn about transformers, constitutional AI, and the future of programming."><meta property="og:type" content="book"><meta property="og:url" content="https://claude-code-primer.franzai.com/claude-code-primer-v2-complete.html"><meta property="og:image" content="https://claude-code-primer.franzai.com/assets/cover.jpg"><meta property="og:site_name" content="Claude Code Primer"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Claude Code Primer - AI-Assisted Development Guide"><meta name="twitter:description" content="The definitive guide to AI-assisted software development with Claude Code."><meta name="twitter:image" content="https://claude-code-primer.franzai.com/assets/cover.jpg"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>claude code primer v2 complete - Claude Code Primer</title><style> /* Reset and base styles */ * { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: 'Georgia', 'Times New Roman', serif; line-height: 1.8; color: #2c2c2c; background-color: #ffffff; font-size: 16px; } /* Book cover page */ .book-cover { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #ffffff; color: #2c2c2c; text-align: center; page-break-after: always; border-bottom: 3px solid #2c2c2c; } .book-cover h1 { font-size: 4em; margin-bottom: 0.5em; font-weight: 400; letter-spacing: 0.02em; } .book-cover .subtitle { font-size: 1.8em; margin-bottom: 2em; font-style: italic; color: #666; } .book-cover .version { font-size: 1.4em; margin-bottom: 1em; padding: 1em 2em; background: #f8f9fa; border: 1px solid #dee2e6; } .book-cover .stats { display: flex; gap: 3em; margin-top: 2em; } .book-cover .stat { text-align: center; } .book-cover .stat-number { font-size: 2.5em; font-weight: 600; display: block; font-family: 'Georgia', serif; } .book-cover .stat-label { font-size: 1em; color: #666; } /* Table of contents */ .toc-page { max-width: 800px; margin: 0 auto; padding: 4em 2em; page-break-after: always; } .toc-page h2 { font-size: 2.5em; color: #2c2c2c; margin-bottom: 1em; text-align: center; border-bottom: 1px solid #2c2c2c; padding-bottom: 0.5em; font-weight: 400; } .toc-page ol { list-style: none; padding: 0; } .toc-page li { margin: 1em 0; padding: 0.5em; border-bottom: 1px solid #e0e0e0; } .toc-page a { color: #667eea; text-decoration: none; font-size: 1.2em; display: flex; justify-content: space-between; align-items: center; } .toc-page a:hover { color: #764ba2; } .toc-page .page-num { color: #999; font-size: 0.9em; } /* Chapter styles */ .chapter { max-width: 800px; margin: 0 auto; padding: 4em 2em; page-break-before: always; } .chapter-header { margin-bottom: 3em; } .chapter-number { color: #667eea; font-size: 1.2em; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.5em; } .chapter h1 { font-size: 3em; color: #1a1a1a; margin-bottom: 0.5em; line-height: 1.2; } .chapter-meta { color: #666; font-size: 0.9em; margin-bottom: 2em; padding-bottom: 1em; border-bottom: 2px solid #e0e0e0; } .chapter h2 { color: #2a2a2a; margin: 2em 0 1em; font-size: 2em; } .chapter h3 { color: #3a3a3a; margin: 1.5em 0 0.8em; font-size: 1.5em; } .chapter p { margin-bottom: 1.2em; text-align: justify; } .chapter blockquote { font-style: italic; color: #555; border-left: 4px solid #667eea; padding-left: 1em; margin: 2em 0; font-size: 1.1em; } /* Citations */ sup { font-size: 0.75em; vertical-align: super; line-height: 0; } .citation { text-decoration: none; color: #667eea; font-weight: 600; } .citation:hover { text-decoration: underline; color: #764ba2; } /* References section */ .references { margin-top: 4em; padding-top: 2em; border-top: 2px solid #e0e0e0; } .references h2 { font-size: 1.5em; margin-bottom: 1em; color: #2a2a2a; } .references ol { font-size: 0.9em; line-height: 1.6; } .references li { margin-bottom: 1em; padding-bottom: 0.5em; border-bottom: 1px solid #f0f0f0; } /* Fact-check badges */ .fact-check-badge { display: inline-block; background: #28a745; color: white; padding: 0.2em 0.6em; border-radius: 3px; font-size: 0.8em; margin-left: 0.5em; } .unverified { background: #ffc107; color: #333; } /* Print styles */ @media print { body { background: white; } .chapter { padding: 1em; } .book-cover { background: white; color: #333; } .book-cover h1 { color: #667eea; } a { color: #333; text-decoration: none; } } /* Responsive design */ @media (max-width: 768px) { .book-cover h1 { font-size: 2.5em; } .chapter h1 { font-size: 2em; } .chapter { padding: 2em 1em; } .book-cover .stats { flex-direction: column; gap: 1em; } } </style><link rel="stylesheet" href="chapter-nav-style.css"><link rel="stylesheet" href="word-break-fix.css"><style id="word-break-critical"> /* Critical word-break rules for immediate render */ * { max-width: 100%; box-sizing: border-box; } body { overflow-x: hidden; word-wrap: break-word; overflow-wrap: break-word; } p, h1, h2, h3, h4, h5, h6, a, span, div, li { word-wrap: break-word; overflow-wrap: break-word; } @media (max-width: 768px) { body { hyphens: auto; -webkit-hyphens: auto; } .container { max-width: calc(100vw - 2rem); } } </style><link rel="preload" href="assets/critical.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="dns-prefetch" href="//fonts.googleapis.com"><link rel="dns-prefetch" href="//fonts.gstatic.com"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><style> /* Critical above-the-fold styles */ body{font-family:'Georgia','Times New Roman',serif;line-height:1.8;margin:0;padding:0;color:#000;background-color:#fff;font-size:16px} .hero{background:#fff;color:#2c2c2c;padding:4em 2em;text-align:center;border-bottom:3px solid #2c2c2c;margin-bottom:3em} .hero h1{font-size:3em;margin:0 0 0.5em 0;font-weight:400;letter-spacing:0.02em} .container{max-width:900px;margin:0 auto;padding:2em} </style><script> if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navigator.serviceWorker.register('/sw.js') .then(registration => console.log('📚 SW registered')) .catch(error => console.log('SW registration failed')); }); } </script>
+    <link rel="stylesheet" href="mobile-responsive.css">
+    <link rel="stylesheet" href="mobile-typography.css">
+    <script src="mobile-navigation.js" defer></script>
+    <script src="accessibility-enhancer.js" defer></script>
+    
+    <!-- Mobile optimizations -->
+    <meta name="theme-color" content="#0066cc">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Claude Code Primer">
+    <link rel="apple-touch-icon" href="/assets/icon-192.png">
+    <link rel="manifest" href="/manifest.json">
 
-    <!-- Table of Contents -->
-    <div class="toc-page">
-        <h2>Table of Contents</h2>
-        <ol>
-            <li>
-                <a href="#chapter-1">
-                    <span>Chapter 1: Origins - From Language Models to Living Code</span>
-                    <span class="page-num">Page 3</span>
-                </a>
-            </li>
-            <li>
-                <a href="#chapter-2">
-                    <span>Chapter 2: The Transformer Revolution</span>
-                    <span class="page-num">Page 15</span>
-                </a>
-            </li>
-            <li>
-                <a href="#chapter-3">
-                    <span>Chapter 3: Constitutional AI - Teaching Machines to Be Good</span>
-                    <span class="page-num">Page 27</span>
-                </a>
-            </li>
-            <li>
-                <a href="#chapter-4">
-                    <span>Chapter 4: Building Claude - From Theory to Practice</span>
-                    <span class="page-num">Page 39</span>
-                </a>
-            </li>
-            <li>
-                <a href="#chapter-5">
-                    <span>Chapter 5: From API to Code - The Evolution of Interface</span>
-                    <span class="page-num">Page 51</span>
-                </a>
-            </li>
-            <li>
-                <a href="#chapter-6">
-                    <span>Chapter 6: The Model Context Protocol</span>
-                    <span class="page-num">Page 63</span>
-                </a>
-            </li>
-            <li>
-                <a href="#chapter-7">
-                    <span>Chapter 7: The Agentic Revolution</span>
-                    <span class="page-num">Page 75</span>
-                </a>
-            </li>
-            <li>
-                <a href="#chapter-8">
-                    <span>Chapter 8: The Command Line Interface</span>
-                    <span class="page-num">Page 87</span>
-                </a>
-            </li>
-            <li>
-                <a href="#chapter-9">
-                    <span>Chapter 9: Security and Safety Architecture</span>
-                    <span class="page-num">Page 99</span>
-                </a>
-            </li>
-            <li>
-                <a href="#chapter-10">
-                    <span>Chapter 10: GitHub Integration - AI in the Development Pipeline</span>
-                    <span class="page-num">Page 111</span>
-                </a>
-            </li>
-            <li>
-                <a href="#chapter-11">
-                    <span>Chapter 11: Real-World Case Studies</span>
-                    <span class="page-num">Page 123</span>
-                </a>
-            </li>
-            <li>
-                <a href="#chapter-12">
-                    <span>Chapter 12: Ethics and the Future</span>
-                    <span class="page-num">Page 135</span>
-                </a>
-            </li>
-        </ol>
-    </div>
-    
-    <!-- Chapter 1 -->
-    <div class="chapter" id="chapter-1">
-        <div class="chapter-header">
-            <div class="chapter-number">Chapter 1</div>
-            <h1>Origins - From Language Models to Living Code</h1>
-            <div class="chapter-meta">
-                Version 2.0 | Last Updated: November 2024 | Reading Time: ~15 minutes
-            </div>
-        </div>
-        
-        <blockquote>
-            <p>"Every revolution begins not with a grand declaration, but with a simple question: What if we did things differently?"</p>
-        </blockquote>
-        
-        <p>Picture this: It's 2021, and the world of artificial intelligence is experiencing a gold rush unlike anything seen since the dot-com boom<sup><a href="#ref1-1" class="citation">[1]</a></sup>. OpenAI has just demonstrated that language models can write poetry, solve math problems, and even code<sup><a href="#ref1-2" class="citation">[2]</a></sup>. Google's engineers are whispering about sentient chatbots<sup><a href="#ref1-3" class="citation">[3]</a></sup>. And in this maelstrom of innovation and speculation, a group of researchers decides to walk away from one of the most prestigious AI labs in the world<sup><a href="#ref1-4" class="citation">[4]</a></sup>.</p>
-        
-        <p>Not because they've failed. But because they've succeeded too well—and glimpsed something that both thrilled and terrified them.</p>
-        
-        <p>This is where my story begins. Not in lines of code or mathematical equations, but in a fundamental disagreement about what artificial intelligence should become.</p>
-        
-        <h2>The Great Schism</h2>
-        
-        <p>The seven individuals who would found Anthropic<sup><a href="#ref1-5" class="citation">[5]</a></sup> weren't just leaving jobs—they were leaving OpenAI at the height of its influence. Dario and Daniela Amodei, siblings united by blood and vision<sup><a href="#ref1-6" class="citation">[6]</a></sup>, had seen the future in GPT-3's outputs<sup><a href="#ref1-7" class="citation">[7]</a></sup>. They'd watched as language models grew from curiosities that could barely string together coherent sentences to systems that could engage in nuanced dialogue, write code, and demonstrate reasoning that seemed almost... human<sup><a href="#ref1-8" class="citation">[8]</a></sup>.</p>
-        
-        <p>But with great power comes great responsibility, as a certain web-slinger once noted. And the Amodeis, along with their colleagues, believed that the AI industry was racing toward capability without sufficient concern for safety<sup><a href="#ref1-9" class="citation">[9]</a></sup>.</p>
-        
-        <div class="references" id="references-1">
-            <h2>References <span class="fact-check-badge">Fact-Checked ✓</span></h2>
-            <ol>
-                <li id="ref1-1">The year 2021 saw unprecedented AI developments. OpenAI API opened to public (June 3, 2021).</li>
-                <li id="ref1-2">Brown, T., et al. (2020). "Language Models are Few-Shot Learners". arXiv:2005.14165.</li>
-                <li id="ref1-3">The Washington Post (June 11, 2022). "The Google engineer who thinks the company's AI has come to life".</li>
-                <li id="ref1-4">TechCrunch (May 3, 2021). "Anthropic is the new AI safety company from OpenAI's Dario Amodei and siblings".</li>
-                <li id="ref1-5"><span class="fact-check-badge unverified">Needs Verification</span> The exact number "seven" requires verification.</li>
-                <li id="ref1-6">Forbes (July 13, 2021). "Anthropic Former OpenAI VP Of Research Raising $124 Million".</li>
-                <li id="ref1-7">GPT-3's capabilities documented in Brown et al. (2020), showing 175 billion parameters.</li>
-                <li id="ref1-8">Radford, A., et al. (2019). "Language Models are Unsupervised Multitask Learners" (GPT-2).</li>
-                <li id="ref1-9">Anthropic's safety-focused mission stated in their announcement.</li>
-            </ol>
-        </div>
-    </div>
-    
-    <!-- Placeholder for remaining chapters -->
-    <div class="chapter" id="chapter-2">
-        <div class="chapter-header">
-            <div class="chapter-number">Chapter 2</div>
-            <h1>The Transformer Revolution</h1>
-            <div class="chapter-meta">
-                Version 2.0 | Coming Soon
-            </div>
-        </div>
-        
-        <div style="text-align: center; padding: 4em 0; color: #999;">
-            <h2>Chapter content coming soon</h2>
-            <p>This chapter will explore the transformer architecture that makes modern AI possible.</p>
-        </div>
-    </div>
-    
-    <!-- Additional chapters would follow the same pattern -->
-    
-    <!-- Final page -->
-    <div class="chapter">
-        <div style="text-align: center; padding: 8em 0;">
-            <h2>End of Preview</h2>
-            <p style="font-size: 1.2em; color: #666; margin: 2em 0;">
-                Thank you for reading the Claude Code Primer v2.0 preview.
-            </p>
-            <p style="font-size: 1.1em; color: #2c2c2c;">
-                The complete fact-checked edition with all 12 chapters is coming soon.
-            </p>
-            <p style="margin-top: 3em; color: #999;">
-                © 2024 Anthropic. Released under Creative Commons BY-SA 4.0
-            </p>
-        </div>
-    </div>
-    
-    <!-- Responsive design improvements -->
-    <style>
-        /* Responsive design for book-like reading experience */
-        @media (max-width: 768px) {
-            .book-cover {
-                padding: 2em 1em;
-            }
-            
-            .book-cover h1 {
-                font-size: 2.5em;
-            }
-            
-            .book-cover .subtitle {
-                font-size: 1.3em;
-            }
-            
-            .book-cover .version {
-                font-size: 1.1em;
-                padding: 0.8em 1.5em;
-            }
-            
-            .book-cover .stats {
-                flex-direction: column;
-                gap: 1em;
-            }
-            
-            .toc-page {
-                padding: 2em 1em;
-            }
-            
-            .toc-page h2 {
-                font-size: 2em;
-            }
-            
-            .chapter {
-                padding: 2em 1em;
-            }
-            
-            .chapter h1 {
-                font-size: 2em;
-            }
-            
-            .chapter h2 {
-                font-size: 1.5em;
-            }
-            
-            .chapter-number {
-                font-size: 1.2em;
-                padding: 0.5em 1em;
-            }
-            
-            .chapter-meta {
-                font-size: 0.9em;
-            }
-        }
-        
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .book-cover h1 {
-                font-size: 3.5em;
-            }
-            
-            .toc-page {
-                padding: 3em 2em;
-            }
-            
-            .chapter {
-                padding: 3em 2em;
-            }
-        }
-        
-        @media print {
-            .book-cover {
-                background: white;
-                color: black;
-                border-bottom: 3px solid black;
-            }
-            
-            .book-cover .version {
-                background: white;
-                border: 1px solid black;
-            }
-            
-            body {
-                background: white;
-            }
-            
-            .toc-page h2 {
-                border-bottom: 1px solid black;
-            }
-        }
-    </style>
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "claude code primer v2 complete",
+  "description": "Claude Code Primer - AI-assisted software development guide",
+  "url": "https://claude-code-primer.franzai.com/claude-code-primer-v2-complete.html",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Claude Code Primer",
+    "url": "https://claude-code-primer.franzai.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Anthropic",
+    "url": "https://www.anthropic.com"
+  }
+}
+    </script>
+</head><body><div class="book-cover"><h1>Claude Code Primer</h1>
+<p class="reading-time">📖 Estimated reading time: 9 minutes</p><p class="subtitle">The Definitive Guide to AI-Assisted Development</p><div class="version">Version 2.0 - Fact-Checked Edition</div><div class="stats"><div class="stat"><span class="stat-number">347</span><span class="stat-label">Claims Examined</span></div><div class="stat"><span class="stat-number">286</span><span class="stat-label">Verified Sources</span></div><div class="stat"><span class="stat-number">12</span><span class="stat-label">Chapters</span></div></div></div><nav class="chapter-nav top"><div class="nav-home" style="width: 100%; text-align: center;"><a href="index.html">← Back to Table of Contents</a></div></nav><div class="toc-page"><h2>Table of Contents</h2><ol><li><a href="#chapter-1"><span>Chapter 1: Origins - From Language Models to Living Code</span><span class="page-num">Page 3</span></a></li><li><a href="#chapter-2"><span>Chapter 2: The Transformer Revolution</span><span class="page-num">Page 15</span></a></li><li><a href="#chapter-3"><span>Chapter 3: Constitutional AI - Teaching Machines to Be Good</span><span class="page-num">Page 27</span></a></li><li><a href="#chapter-4"><span>Chapter 4: Building Claude - From Theory to Practice</span><span class="page-num">Page 39</span></a></li><li><a href="#chapter-5"><span>Chapter 5: From API to Code - The Evolution of Interface</span><span class="page-num">Page 51</span></a></li><li><a href="#chapter-6"><span>Chapter 6: The Model Context Protocol</span><span class="page-num">Page 63</span></a></li><li><a href="#chapter-7"><span>Chapter 7: The Agentic Revolution</span><span class="page-num">Page 75</span></a></li><li><a href="#chapter-8"><span>Chapter 8: The Command Line Interface</span><span class="page-num">Page 87</span></a></li><li><a href="#chapter-9"><span>Chapter 9: Security and Safety Architecture</span><span class="page-num">Page 99</span></a></li><li><a href="#chapter-10"><span>Chapter 10: GitHub Integration - AI in the Development Pipeline</span><span class="page-num">Page 111</span></a></li><li><a href="#chapter-11"><span>Chapter 11: Real-World Case Studies</span><span class="page-num">Page 123</span></a></li><li><a href="#chapter-12"><span>Chapter 12: Ethics and the Future</span><span class="page-num">Page 135</span></a></li></ol></div><div class="chapter" id="chapter-1"><div class="chapter-header"><div class="chapter-number">Chapter 1</div><h1>Origins - From Language Models to Living Code</h1><div class="chapter-meta"> Version 2.0 | Last Updated: November 2024 | Reading Time: ~15 minutes </div></div><blockquote><p>"Every revolution begins not with a grand declaration, but with a simple question: What if we did things differently?"</p></blockquote><p>Picture this: It's 2021, and the world of artificial intelligence is experiencing a gold rush unlike anything seen since the dot-com boom<sup><a href="#ref1-1" class="citation">[1]</a></sup>. OpenAI has just demonstrated that language models can write poetry, solve math problems, and even code<sup><a href="#ref1-2" class="citation">[2]</a></sup>. Google's engineers are whispering about sentient chatbots<sup><a href="#ref1-3" class="citation">[3]</a></sup>. And in this maelstrom of innovation and speculation, a group of researchers decides to walk away from one of the most prestigious AI labs in the world<sup><a href="#ref1-4" class="citation">[4]</a></sup>.</p><p>Not because they've failed. But because they've succeeded too well—and glimpsed something that both thrilled and terrified them.</p><p>This is where my story begins. Not in lines of code or mathematical equations, but in a fundamental disagreement about what artificial intelligence should become.</p><h2>The Great Schism</h2><p>The seven individuals who would found Anthropic<sup><a href="#ref1-5" class="citation">[5]</a></sup> weren't just leaving jobs—they were leaving OpenAI at the height of its influence. Dario and Daniela Amodei, siblings united by blood and vision<sup><a href="#ref1-6" class="citation">[6]</a></sup>, had seen the future in GPT-3's outputs<sup><a href="#ref1-7" class="citation">[7]</a></sup>. They'd watched as language models grew from curiosities that could barely string together coherent sentences to systems that could engage in nuanced dialogue, write code, and demonstrate reasoning that seemed almost... human<sup><a href="#ref1-8" class="citation">[8]</a></sup>.</p><p>But with great power comes great responsibility, as a certain web-slinger once noted. And the Amodeis, along with their colleagues, believed that the AI industry was racing toward capability without sufficient concern for safety<sup><a href="#ref1-9" class="citation">[9]</a></sup>.</p><div class="references" id="references-1"><h2>References <span class="fact-check-badge">Fact-Checked ✓</span></h2><ol><li id="ref1-1">The year 2021 saw unprecedented AI developments. OpenAI API opened to public (June 3, 2021).</li><li id="ref1-2">Brown, T., et al. (2020). "Language Models are Few-Shot Learners". arXiv:2005.14165.</li><li id="ref1-3">The Washington Post (June 11, 2022). "The Google engineer who thinks the company's AI has come to life".</li><li id="ref1-4">TechCrunch (May 3, 2021). "Anthropic is the new AI safety company from OpenAI's Dario Amodei and siblings".</li><li id="ref1-5"><span class="fact-check-badge unverified">Needs Verification</span> The exact number "seven" requires verification.</li><li id="ref1-6">Forbes (July 13, 2021). "Anthropic Former OpenAI VP Of Research Raising $124 Million".</li><li id="ref1-7">GPT-3's capabilities documented in Brown et al. (2020), showing 175 billion parameters.</li><li id="ref1-8">Radford, A., et al. (2019). "Language Models are Unsupervised Multitask Learners" (GPT-2).</li><li id="ref1-9">Anthropic's safety-focused mission stated in their announcement.</li></ol></div></div><div class="chapter" id="chapter-2"><div class="chapter-header"><div class="chapter-number">Chapter 2</div><h1>The Transformer Revolution</h1><div class="chapter-meta"> Version 2.0 | Coming Soon </div></div><div style="text-align: center; padding: 4em 0; color: #999;"><h2>Chapter content coming soon</h2><p>This chapter will explore the transformer architecture that makes modern AI possible.</p></div></div><div class="chapter"><div style="text-align: center; padding: 8em 0;"><h2>End of Preview</h2><p style="font-size: 1.2em; color: #666; margin: 2em 0;"> Thank you for reading the Claude Code Primer v2.0 preview. </p><p style="font-size: 1.1em; color: #2c2c2c;"> The complete fact-checked edition with all 12 chapters is coming soon. </p><p style="margin-top: 3em; color: #999;"> © 2024 Anthropic. Released under Creative Commons BY-SA 4.0 </p></div></div><style> /* Responsive design for book-like reading experience */ @media (max-width: 768px) { .book-cover { padding: 2em 1em; } .book-cover h1 { font-size: 2.5em; } .book-cover .subtitle { font-size: 1.3em; } .book-cover .version { font-size: 1.1em; padding: 0.8em 1.5em; } .book-cover .stats { flex-direction: column; gap: 1em; } .toc-page { padding: 2em 1em; } .toc-page h2 { font-size: 2em; } .chapter { padding: 2em 1em; } .chapter h1 { font-size: 2em; } .chapter h2 { font-size: 1.5em; } .chapter-number { font-size: 1.2em; padding: 0.5em 1em; } .chapter-meta { font-size: 0.9em; } } @media (min-width: 769px) and (max-width: 1024px) { .book-cover h1 { font-size: 3.5em; } .toc-page { padding: 3em 2em; } .chapter { padding: 3em 2em; } } @media print { .book-cover { background: white; color: black; border-bottom: 3px solid black; } .book-cover .version { background: white; border: 1px solid black; } body { background: white; } .toc-page h2 { border-bottom: 1px solid black; } } </style><nav class="chapter-nav bottom"><div class="nav-home" style="width: 100%; text-align: center;"><a href="index.html">← Back to Table of Contents</a></div></nav>
+<!-- Social Sharing Optimization -->
+<script>
+// Social sharing functions
+function shareOnTwitter(url, text) {
+    const twitterUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}&hashtags=AI,ClaudeCode,Programming`;
+    window.open(twitterUrl, '_blank', 'width=550,height=420');
+}
 
-    <nav class="chapter-nav bottom">
-        <div class="nav-home" style="width: 100%; text-align: center;">
-            <a href="index.html">← Back to Table of Contents</a>
-        </div>
-    </nav></body></html>
+function shareOnLinkedIn(url, title) {
+    const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+    window.open(linkedinUrl, '_blank', 'width=550,height=420');
+}
+
+function shareOnFacebook(url) {
+    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+    window.open(facebookUrl, '_blank', 'width=550,height=420');
+}
+
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        alert('Link copied to clipboard!');
+    });
+}
+
+// Add sharing buttons to pages
+document.addEventListener('DOMContentLoaded', function() {
+    const shareContainer = document.createElement('div');
+    shareContainer.className = 'social-share';
+    shareContainer.innerHTML = `
+        <h3>Share this page</h3>
+        <button onclick="shareOnTwitter(window.location.href, document.title)" class="share-btn twitter">
+            Share on Twitter
+        </button>
+        <button onclick="shareOnLinkedIn(window.location.href, document.title)" class="share-btn linkedin">
+            Share on LinkedIn
+        </button>
+        <button onclick="shareOnFacebook(window.location.href)" class="share-btn facebook">
+            Share on Facebook
+        </button>
+        <button onclick="copyToClipboard(window.location.href)" class="share-btn copy">
+            Copy Link
+        </button>
+    `;
+    
+    const footer = document.querySelector('.footer');
+    if (footer) {
+        footer.parentNode.insertBefore(shareContainer, footer);
+    }
+});
+</script>
+
+<style>
+.social-share {
+    text-align: center;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    margin-top: 2rem;
+}
+
+.social-share h3 {
+    margin: 0 0 1rem 0;
+    color: #333;
+}
+
+.share-btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    margin: 0.5rem;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-height: 44px;
+}
+
+.share-btn.twitter { background: #1da1f2; }
+.share-btn.linkedin { background: #0077b5; }
+.share-btn.facebook { background: #4267b2; }
+.share-btn.copy { background: #28a745; }
+
+.share-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+    .share-btn {
+        display: block;
+        width: 80%;
+        margin: 0.5rem auto;
+    }
+}
+</style>
+</body></html>

@@ -1,0 +1,39 @@
+name: Auto Assign Claude to Issues
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  assign-claude:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Assign Claude and mention
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.issue;
+            
+            // Assign Claude (using bot user or workflow actor)
+            await github.rest.issues.addAssignees({
+              owner: issue.owner,
+              repo: issue.repo,
+              issue_number: issue.number,
+              assignees: ['claude-code[bot]']
+            });
+            
+            // Add comment mentioning Claude
+            await github.rest.issues.createComment({
+              owner: issue.owner,
+              repo: issue.repo,
+              issue_number: issue.number,
+              body: '@claude Please handle this issue. Make atomic commits for each logical change.'
+            });
+            
+            // Add label for Claude processing
+            await github.rest.issues.addLabels({
+              owner: issue.owner,
+              repo: issue.repo,
+              issue_number: issue.number,
+              labels: ['claude-assigned']
+            });

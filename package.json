@@ -12,7 +12,12 @@
     "fix:links": "node fix-navigation-links.js",
     "serve": "python3 -m http.server 8000",
     "validate": "npm run test",
-    "precommit": "npm test"
+    "precommit": "npm test",
+    "perf:test": "node performance-optimizer.js",
+    "perf:lighthouse": "lighthouse http://localhost:8000 --output=json --output-path=lighthouse-report.json",
+    "perf:analyze": "npx webpack-bundle-analyzer dist/stats.json",
+    "build:prod": "npm run perf:test && npm run test",
+    "deploy:perf": "npm run build:prod && wrangler pages deploy ."
   },
   "keywords": [
     "ai",
