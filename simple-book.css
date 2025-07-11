@@ -1,0 +1,158 @@
+/* Simple Book CSS - Clean, readable, no frills */
+body {
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #000000;
+    background-color: #ffffff;
+    font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #000000;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+h1 {
+    font-size: 2em;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 0.5em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+p {
+    margin: 1em 0;
+    text-align: justify;
+}
+
+a {
+    color: #0000ff;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #0000ff;
+}
+
+a:hover {
+    /* No hover effects as requested */
+    color: #0000ff;
+    text-decoration: underline;
+}
+
+.navigation {
+    margin: 2em 0;
+    text-align: center;
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    padding: 1em;
+}
+
+.nav-link {
+    display: inline-block;
+    margin: 0 20px;
+    color: #0000ff;
+    text-decoration: underline;
+    font-weight: normal;
+}
+
+.nav-home {
+    margin: 0 20px;
+}
+
+blockquote {
+    margin: 1.5em 0;
+    padding-left: 1em;
+    border-left: 3px solid #000000;
+    font-style: italic;
+}
+
+code {
+    background-color: #f5f5f5;
+    padding: 2px 4px;
+    font-family: monospace;
+    border: 1px solid #dddddd;
+}
+
+pre {
+    background-color: #f5f5f5;
+    padding: 1em;
+    border: 1px solid #dddddd;
+    overflow-x: auto;
+    font-family: monospace;
+}
+
+ul, ol {
+    margin: 1em 0;
+    padding-left: 2em;
+}
+
+li {
+    margin: 0.5em 0;
+}
+
+.chapter-title {
+    text-align: center;
+    margin: 2em 0;
+}
+
+.table-of-contents {
+    margin: 2em 0;
+}
+
+.toc-item {
+    display: block;
+    margin: 0.8em 0;
+    color: #0000ff;
+    text-decoration: underline;
+    padding: 0.5em 0;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.chapter-number {
+    font-weight: bold;
+}
+
+/* Mobile responsive - keep it simple */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    .navigation {
+        padding: 0.5em;
+    }
+    
+    .nav-link {
+        display: block;
+        margin: 0.5em 0;
+    }
+}
+
+/* Print styles */
+@media print {
+    body {
+        font-size: 12pt;
+        line-height: 1.4;
+    }
+    
+    .navigation {
+        display: none;
+    }
+    
+    a {
+        color: #000000;
+        text-decoration: none;
+    }
+}
