@@ -1,5 +1,5 @@
-/* Claude Code Primer - Book Styles */
-/* Clean, minimal design with only black, white, and blue links */
+/* Claude Code Primer - Enhanced Book Styles */
+/* Professional design with brand identity integration */
 
 * {
     margin: 0;
@@ -8,28 +8,30 @@
 }
 
 body {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 18px;
-    line-height: 1.8;
-    color: #000000;
-    background-color: #ffffff;
+    font-family: var(--font-family-primary);
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--text-primary);
+    background-color: var(--background-primary);
     max-width: 700px;
     margin: 0 auto;
-    padding: 20px;
+    padding: var(--spacing-5);
+    transition: color var(--transition-normal), background-color var(--transition-normal);
 }
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
-    font-weight: normal;
+    font-weight: var(--font-medium);
     margin-top: 2em;
     margin-bottom: 1em;
-    color: #000000;
+    color: var(--text-primary);
+    transition: color var(--transition-normal);
 }
 
-h1 { font-size: 2.5em; }
-h2 { font-size: 2em; }
-h3 { font-size: 1.5em; }
-h4 { font-size: 1.2em; }
+h1 { font-size: var(--text-5xl); }
+h2 { font-size: var(--text-4xl); }
+h3 { font-size: var(--text-3xl); }
+h4 { font-size: var(--text-2xl); }
 
 p {
     margin-bottom: 1.5em;
@@ -39,16 +41,18 @@ p {
 
 /* Links */
 a {
-    color: #0000ff;
+    color: var(--primary-color);
     text-decoration: underline;
+    transition: color var(--transition-fast);
 }
 
 a:hover {
+    color: var(--primary-dark);
     text-decoration: none;
 }
 
 a:visited {
-    color: #0000ff;
+    color: var(--primary-color);
 }
 
 /* Navigation */
@@ -56,13 +60,14 @@ a:visited {
     display: flex;
     justify-content: space-between;
     padding: 1em 0;
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid var(--background-tertiary);
     margin-bottom: 2em;
+    transition: border-color var(--transition-normal);
 }
 
 .chapter-nav.bottom {
     border-bottom: none;
-    border-top: 1px solid #000000;
+    border-top: 1px solid var(--background-tertiary);
     margin-top: 3em;
     margin-bottom: 0;
 }
@@ -83,17 +88,20 @@ a:visited {
 .book-header {
     text-align: center;
     padding: 3em 0;
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid var(--background-tertiary);
     margin-bottom: 3em;
+    transition: border-color var(--transition-normal);
 }
 
 .book-header h1 {
     margin: 0 0 0.5em 0;
+    color: var(--text-primary);
 }
 
 .book-header .subtitle {
     font-style: italic;
-    font-size: 1.2em;
+    font-size: var(--text-xl);
+    color: var(--text-secondary);
 }
 
 /* Chapter Header */
@@ -129,30 +137,36 @@ a:visited {
     display: block;
     text-decoration: none;
     padding: 1em;
-    border: 1px solid #000000;
-    transition: background-color 0.2s;
+    border: 1px solid var(--background-tertiary);
+    transition: background-color var(--transition-normal), border-color var(--transition-normal);
+    border-radius: var(--border-radius-md);
 }
 
 .chapter-list a:hover {
-    background-color: #f0f0f0;
+    background-color: var(--background-secondary);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
 .chapter-number {
     display: inline-block;
     width: 2em;
-    font-weight: bold;
+    font-weight: var(--font-bold);
+    color: var(--primary-color);
 }
 
 .chapter-title {
-    font-size: 1.2em;
+    font-size: var(--text-xl);
     display: block;
     margin-bottom: 0.5em;
+    color: var(--text-primary);
 }
 
 .chapter-subtitle {
     font-style: italic;
-    color: #666666;
-    font-size: 0.9em;
+    color: var(--text-tertiary);
+    font-size: var(--text-sm);
 }
 
 /* Content */
@@ -169,22 +183,29 @@ a:visited {
 .chapter-content blockquote {
     margin: 2em 0;
     padding-left: 2em;
-    border-left: 3px solid #000000;
+    border-left: 3px solid var(--primary-color);
     font-style: italic;
+    background: var(--background-secondary);
+    padding: var(--spacing-4);
+    border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
 }
 
 .chapter-content pre {
-    background-color: #f5f5f5;
-    padding: 1em;
+    background-color: var(--background-secondary);
+    padding: var(--spacing-4);
     overflow-x: auto;
     margin: 1.5em 0;
-    border: 1px solid #000000;
+    border: 1px solid var(--background-tertiary);
+    border-radius: var(--border-radius-md);
+    font-family: var(--font-family-mono);
 }
 
 .chapter-content code {
-    font-family: 'Courier New', Courier, monospace;
-    background-color: #f5f5f5;
+    font-family: var(--font-family-mono);
+    background-color: var(--background-secondary);
     padding: 0.2em 0.4em;
+    border-radius: var(--border-radius-sm);
+    font-size: var(--text-sm);
 }
 
 .chapter-content pre code {
@@ -206,27 +227,29 @@ a:visited {
     text-align: center;
     padding: 3em 0 1em 0;
     margin-top: 4em;
-    border-top: 1px solid #000000;
-    font-size: 0.9em;
+    border-top: 1px solid var(--background-tertiary);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    transition: border-color var(--transition-normal);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
     body {
-        font-size: 16px;
-        padding: 15px;
+        font-size: var(--text-base);
+        padding: var(--spacing-4);
     }
     
-    h1 { font-size: 2em; }
-    h2 { font-size: 1.5em; }
-    h3 { font-size: 1.2em; }
+    h1 { font-size: var(--text-4xl); }
+    h2 { font-size: var(--text-3xl); }
+    h3 { font-size: var(--text-2xl); }
     
     p {
         text-align: left;
     }
     
     .chapter-nav {
-        font-size: 0.9em;
+        font-size: var(--text-sm);
     }
 }
 
@@ -234,7 +257,9 @@ a:visited {
 @media print {
     body {
         font-size: 12pt;
-        line-height: 1.5;
+        line-height: var(--leading-normal);
+        color: black;
+        background-color: white;
     }
     
     .chapter-nav {
@@ -242,7 +267,7 @@ a:visited {
     }
     
     a {
-        color: #000000;
+        color: black;
         text-decoration: none;
     }
     
@@ -252,5 +277,16 @@ a:visited {
     
     h1, h2, h3 {
         page-break-after: avoid;
+        color: black;
+    }
+    
+    .chapter-content blockquote {
+        background: white;
+        border-left-color: black;
+    }
+    
+    .chapter-content pre {
+        background: #f5f5f5;
+        border-color: black;
     }
 }
