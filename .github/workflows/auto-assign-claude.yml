@@ -19,7 +19,7 @@ jobs:
               owner: issue.owner,
               repo: issue.repo,
               issue_number: issue.number,
-              assignees: ['claude-code[bot]']
+              assignees: ['claude[bot]']
             });
             
             // Add comment mentioning Claude
@@ -35,5 +35,5 @@ jobs:
               owner: issue.owner,
               repo: issue.repo,
               issue_number: issue.number,
-              labels: ['claude-assigned']
+              labels: ['claude-assigned', 'ai-review']
             });

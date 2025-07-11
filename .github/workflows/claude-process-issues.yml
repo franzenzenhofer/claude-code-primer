@@ -15,7 +15,7 @@ jobs:
     if: |
       (github.event_name == 'issue_comment' && 
        contains(github.event.comment.body, '@claude') && 
-       github.event.issue.assignee.login == 'claude-code[bot]') ||
+       github.event.issue.assignee.login == 'claude[bot]') ||
       github.event_name == 'workflow_dispatch'
     
     steps:
@@ -48,7 +48,7 @@ jobs:
           
           # Create feature branch
           git config user.name "Claude Code Bot"
-          git config user.email "claude-code[bot]@users.noreply.github.com"
+          git config user.email "claude[bot]@users.noreply.github.com"
           BRANCH_NAME="claude/issue-$ISSUE_NUMBER"
           git checkout -b $BRANCH_NAME
           

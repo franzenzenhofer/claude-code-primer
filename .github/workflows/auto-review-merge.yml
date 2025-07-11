@@ -91,7 +91,7 @@ jobs:
         with:
           script: |
             const comment = context.payload.comment;
-            const allowedUsers = ['franzenzenhofer', 'claude-code[bot]'];
+            const allowedUsers = ['franzenzenhofer', 'claude[bot]'];
             
             if (!allowedUsers.includes(comment.user.login)) {
               await github.rest.issues.createComment({

@@ -1,0 +1,60 @@
+name: Claude Mention Handler
+
+on:
+  issues:
+    types: [opened, edited]
+  issue_comment:
+    types: [created, edited]
+  pull_request:
+    types: [opened, edited]
+  pull_request_review_comment:
+    types: [created, edited]
+
+jobs:
+  handle-claude-mention:
+    runs-on: ubuntu-latest
+    if: contains(github.event.issue.body || github.event.comment.body || github.event.pull_request.body, '@claude')
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Notify Claude
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const context_body = github.event.issue?.body || 
+                                github.event.comment?.body || 
+                                github.event.pull_request?.body || '';
+            
+            if (context_body.includes('@claude')) {
+              // Add a reaction to acknowledge
+              if (github.event.comment) {
+                await github.rest.reactions.createForIssueComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  comment_id: github.event.comment.id,
+                  content: 'eyes'
+                });
+              } else if (github.event.issue) {
+                await github.rest.reactions.createForIssue({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: github.event.issue.number,
+                  content: 'eyes'
+                });
+              }
+              
+              // Add label to track Claude mentions
+              const issue_number = github.event.issue?.number || 
+                                  github.event.pull_request?.number;
+              
+              if (issue_number) {
+                await github.rest.issues.addLabels({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue_number,
+                  labels: ['claude-mentioned']
+                });
+              }
+            }
