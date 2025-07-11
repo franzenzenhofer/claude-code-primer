@@ -8,22 +8,30 @@ const urlsToCache = [
     '/claude-code-primer-v2-complete.html',
     '/word-break-fix.css',
     '/chapter-nav-style.css',
-    '/assets/critical.css'
+    '/book-style.css',
+    '/mobile-typography.css',
+    '/mobile-responsive.css',
+    '/mobile-nav-improvements.css',
+    '/assets/critical.css',
+    '/mobile-navigation.js',
+    '/accessibility-enhancer.js',
+    '/manifest.json',
+    '/sitemap.xml'
 ];
 
 // Add all chapter files to cache
-urlsToCache.push('/primer-chapter-01-*.html');
-urlsToCache.push('/primer-chapter-02-*.html');
-urlsToCache.push('/primer-chapter-03-*.html');
-urlsToCache.push('/primer-chapter-04-*.html');
-urlsToCache.push('/primer-chapter-05-*.html');
-urlsToCache.push('/primer-chapter-06-*.html');
-urlsToCache.push('/primer-chapter-07-*.html');
-urlsToCache.push('/primer-chapter-08-*.html');
-urlsToCache.push('/primer-chapter-09-*.html');
-urlsToCache.push('/primer-chapter-10-*.html');
-urlsToCache.push('/primer-chapter-11-*.html');
-urlsToCache.push('/primer-chapter-12-*.html');
+urlsToCache.push('/primer-chapter-01-origins-v2.html');
+urlsToCache.push('/primer-chapter-02-transformer-v2-cited.html');
+urlsToCache.push('/primer-chapter-03-constitutional-v2-cited.html');
+urlsToCache.push('/primer-chapter-04-building-v2.html');
+urlsToCache.push('/primer-chapter-05-api-to-code-v2.html');
+urlsToCache.push('/primer-chapter-06-mcp-v2.html');
+urlsToCache.push('/primer-chapter-07-revolution-v2.html');
+urlsToCache.push('/primer-chapter-08-cli-v2.html');
+urlsToCache.push('/primer-chapter-09-security-v2.html');
+urlsToCache.push('/primer-chapter-10-github-v2.html');
+urlsToCache.push('/primer-chapter-11-cases-v2.html');
+urlsToCache.push('/primer-chapter-12-ethics-v2.html');
 
 self.addEventListener('install', event => {
     event.waitUntil(
@@ -64,8 +72,21 @@ self.addEventListener('activate', event => {
 self.addEventListener('sync', event => {
     if (event.tag === 'background-sync') {
         event.waitUntil(
-            // Prefetch next chapter when online
-            fetch('/primer-chapter-*.html')
+            // Prefetch all chapters when online
+            Promise.all([
+                fetch('/primer-chapter-01-origins-v2.html'),
+                fetch('/primer-chapter-02-transformer-v2-cited.html'),
+                fetch('/primer-chapter-03-constitutional-v2-cited.html'),
+                fetch('/primer-chapter-04-building-v2.html'),
+                fetch('/primer-chapter-05-api-to-code-v2.html'),
+                fetch('/primer-chapter-06-mcp-v2.html'),
+                fetch('/primer-chapter-07-revolution-v2.html'),
+                fetch('/primer-chapter-08-cli-v2.html'),
+                fetch('/primer-chapter-09-security-v2.html'),
+                fetch('/primer-chapter-10-github-v2.html'),
+                fetch('/primer-chapter-11-cases-v2.html'),
+                fetch('/primer-chapter-12-ethics-v2.html')
+            ])
         );
     }
 });
