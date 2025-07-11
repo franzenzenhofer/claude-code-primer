@@ -1,0 +1,46 @@
+[
+  {
+    "device": "iPhone-SE-Small",
+    "hasViewport": true,
+    "hasHorizontalScroll": false,
+    "bodyWidth": 320,
+    "windowWidth": 320,
+    "fontSize": 16.2,
+    "totalLinks": 28,
+    "smallTargets": 14,
+    "status": "PASS"
+  },
+  {
+    "device": "iPhone-12-Standard",
+    "hasViewport": true,
+    "hasHorizontalScroll": false,
+    "bodyWidth": 390,
+    "windowWidth": 390,
+    "fontSize": 16.2,
+    "totalLinks": 28,
+    "smallTargets": 14,
+    "status": "PASS"
+  },
+  {
+    "device": "Pixel-5-Android",
+    "hasViewport": true,
+    "hasHorizontalScroll": false,
+    "bodyWidth": 393,
+    "windowWidth": 393,
+    "fontSize": 16.2,
+    "totalLinks": 28,
+    "smallTargets": 14,
+    "status": "PASS"
+  },
+  {
+    "device": "iPad-Mini-Tablet",
+    "hasViewport": true,
+    "hasHorizontalScroll": false,
+    "bodyWidth": 700,
+    "windowWidth": 768,
+    "fontSize": 16.2,
+    "totalLinks": 28,
+    "smallTargets": 14,
+    "status": "PASS"
+  }
+]

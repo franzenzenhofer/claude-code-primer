@@ -1,0 +1,27 @@
+{
+  "timestamp": "2025-07-11T14:57:34.128Z",
+  "tests": [
+    {
+      "device": "iPhone-SE",
+      "status": "failed",
+      "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.chapter-content') to be visible\u001b[22m\n"
+    },
+    {
+      "device": "iPhone-12",
+      "status": "failed",
+      "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.chapter-content') to be visible\u001b[22m\n"
+    },
+    {
+      "device": "Pixel-5",
+      "status": "failed",
+      "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.chapter-content') to be visible\u001b[22m\n"
+    },
+    {
+      "device": "iPad-Mini",
+      "status": "failed",
+      "error": "page.waitForSelector: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.chapter-content') to be visible\u001b[22m\n"
+    }
+  ],
+  "passed": 0,
+  "failed": 4
+}
