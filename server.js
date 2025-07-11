@@ -213,8 +213,91 @@ function generateTableOfContents() {
   return tocHTML;
 }
 
+// Security configuration
+const securityHeaders = {
+  // HSTS - Force HTTPS for 1 year
+  'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
+  
+  // Prevent clickjacking
+  'X-Frame-Options': 'DENY',
+  
+  // XSS Protection
+  'X-XSS-Protection': '1; mode=block',
+  
+  // Content type sniffing protection
+  'X-Content-Type-Options': 'nosniff',
+  
+  // Referrer policy
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  
+  // Permissions policy
+  'Permissions-Policy': 'accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()',
+  
+  // Content Security Policy
+  'Content-Security-Policy': [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com",
+    "font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com",
+    "img-src 'self' data: https:",
+    "connect-src 'self'",
+    "frame-src 'none'",
+    "object-src 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+    "upgrade-insecure-requests"
+  ].join('; '),
+  
+  // Security headers
+  'X-Powered-By': 'Claude Code Security',
+  'Server': 'Claude Code Primer'
+};
+
+// Rate limiting configuration
+const rateLimitMap = new Map();
+const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
+const RATE_LIMIT_MAX_REQUESTS = 100; // 100 requests per minute per IP
+
+function checkRateLimit(ip) {
+  const now = Date.now();
+  const windowStart = now - RATE_LIMIT_WINDOW;
+  
+  if (!rateLimitMap.has(ip)) {
+    rateLimitMap.set(ip, []);
+  }
+  
+  const requests = rateLimitMap.get(ip);
+  
+  // Remove old requests outside the window
+  const validRequests = requests.filter(timestamp => timestamp > windowStart);
+  
+  if (validRequests.length >= RATE_LIMIT_MAX_REQUESTS) {
+    return false;
+  }
+  
+  // Add current request
+  validRequests.push(now);
+  rateLimitMap.set(ip, validRequests);
+  
+  return true;
+}
+
 const server = http.createServer((req, res) => {
-  console.log(`${new Date().toISOString()} - ${req.method} ${req.url} from ${req.connection.remoteAddress}`);
+  const clientIP = req.connection.remoteAddress || req.socket.remoteAddress || 'unknown';
+  
+  // Apply security headers to all responses
+  Object.entries(securityHeaders).forEach(([header, value]) => {
+    res.setHeader(header, value);
+  });
+  
+  // Rate limiting check
+  if (!checkRateLimit(clientIP)) {
+    res.writeHead(429, { 'Content-Type': 'text/html' });
+    res.end(generateHTML('<h1>Rate Limit Exceeded</h1><p>Too many requests. Please try again later.</p>', 'Rate Limit Exceeded'));
+    return;
+  }
+  
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.url} from ${clientIP}`);
   let filePath = req.url === '/' ? '/' : req.url;
   
   // Serve table of contents for root
