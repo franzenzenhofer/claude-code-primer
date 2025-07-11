@@ -13,7 +13,10 @@ on:
 jobs:
   handle-claude-mention:
     runs-on: ubuntu-latest
-    if: contains(github.event.issue.body || github.event.comment.body || github.event.pull_request.body, '@claude')
+    if: |
+      (github.event.issue && contains(github.event.issue.body, '@claude')) ||
+      (github.event.comment && contains(github.event.comment.body, '@claude')) ||
+      (github.event.pull_request && contains(github.event.pull_request.body, '@claude'))
     
     steps:
       - name: Checkout repository

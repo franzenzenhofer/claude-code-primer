@@ -14,13 +14,17 @@ jobs:
           script: |
             const issue = context.issue;
             
-            // Assign Claude (using bot user or workflow actor)
-            await github.rest.issues.addAssignees({
-              owner: issue.owner,
-              repo: issue.repo,
-              issue_number: issue.number,
-              assignees: ['claude[bot]']
-            });
+            // Try to assign Claude bot, fallback to comment if it fails
+            try {
+              await github.rest.issues.addAssignees({
+                owner: issue.owner,
+                repo: issue.repo,
+                issue_number: issue.number,
+                assignees: ['claude[bot]']
+              });
+            } catch (error) {
+              console.log('Could not assign claude[bot], will proceed with comment only');
+            }
             
             // Add comment mentioning Claude
             await github.rest.issues.createComment({
