@@ -1,0 +1,492 @@
+/* Claude Code Primer - Social Media Assets & Cover Design */
+/* Professional social sharing and branding assets */
+
+/* Social Media Card Styles */
+.social-card {
+    background: var(--background-primary);
+    border: 1px solid var(--background-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    margin: 2rem 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.social-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+}
+
+.social-card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.social-card-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: var(--font-bold);
+}
+
+.social-card-meta {
+    flex: 1;
+}
+
+.social-card-title {
+    font-size: var(--text-xl);
+    font-weight: var(--font-semibold);
+    color: var(--text-primary);
+    margin: 0 0 0.25rem 0;
+}
+
+.social-card-subtitle {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.social-card-content {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+}
+
+.social-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--background-tertiary);
+    padding-top: 1rem;
+}
+
+.social-card-stats {
+    display: flex;
+    gap: 1rem;
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+}
+
+.social-card-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Cover Design Styles */
+.book-cover {
+    width: 100%;
+    max-width: 600px;
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    border-radius: var(--border-radius-xl);
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    color: white;
+    margin: 2rem auto;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.book-cover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.book-cover-header {
+    position: relative;
+    z-index: 1;
+}
+
+.book-cover-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: var(--font-bold);
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.book-cover-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    font-weight: var(--font-light);
+    opacity: 0.9;
+    margin-bottom: 2rem;
+}
+
+.book-cover-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.book-cover-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+}
+
+.book-cover-description {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    opacity: 0.9;
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.book-cover-footer {
+    position: relative;
+    z-index: 1;
+}
+
+.book-cover-author {
+    font-size: var(--text-lg);
+    font-weight: var(--font-medium);
+    opacity: 0.9;
+}
+
+.book-cover-version {
+    font-size: var(--text-sm);
+    opacity: 0.7;
+    margin-top: 0.5rem;
+}
+
+/* Social Sharing Buttons */
+.social-sharing {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--border-radius-md);
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    text-decoration: none;
+    color: white;
+    transition: all var(--transition-normal);
+    min-height: 44px;
+    cursor: pointer;
+}
+
+.social-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.social-btn-twitter {
+    background: linear-gradient(135deg, #1da1f2, #0d8bd9);
+}
+
+.social-btn-linkedin {
+    background: linear-gradient(135deg, #0077b5, #005885);
+}
+
+.social-btn-facebook {
+    background: linear-gradient(135deg, #4267b2, #365899);
+}
+
+.social-btn-github {
+    background: linear-gradient(135deg, #333, #24292e);
+}
+
+.social-btn-copy {
+    background: linear-gradient(135deg, var(--accent-success), #1e7e34);
+}
+
+.social-btn-email {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+}
+
+/* Social Media Preview Cards */
+.social-preview-twitter {
+    border: 1px solid #e1e8ed;
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 504px;
+    margin: 1rem auto;
+    background: white;
+    box-shadow: var(--shadow-sm);
+}
+
+.social-preview-twitter-header {
+    padding: 1rem;
+    border-bottom: 1px solid #e1e8ed;
+}
+
+.social-preview-twitter-image {
+    width: 100%;
+    height: 200px;
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: var(--font-bold);
+}
+
+.social-preview-twitter-content {
+    padding: 1rem;
+}
+
+.social-preview-twitter-title {
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+    margin-bottom: 0.5rem;
+    color: #14171a;
+}
+
+.social-preview-twitter-description {
+    font-size: var(--text-sm);
+    color: #657786;
+    margin-bottom: 0.5rem;
+}
+
+.social-preview-twitter-url {
+    font-size: var(--text-sm);
+    color: #657786;
+    text-decoration: none;
+}
+
+.social-preview-linkedin {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 552px;
+    margin: 1rem auto;
+    background: white;
+    box-shadow: var(--shadow-sm);
+}
+
+.social-preview-linkedin-image {
+    width: 100%;
+    height: 289px;
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: var(--font-bold);
+}
+
+.social-preview-linkedin-content {
+    padding: 1rem;
+}
+
+.social-preview-linkedin-title {
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.social-preview-linkedin-description {
+    font-size: var(--text-sm);
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.social-preview-linkedin-url {
+    font-size: var(--text-sm);
+    color: #666;
+    text-decoration: none;
+}
+
+/* OpenGraph and Twitter Card Metadata Generator */
+.metadata-generator {
+    background: var(--background-secondary);
+    border: 1px solid var(--background-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+.metadata-generator h3 {
+    margin: 0 0 1rem 0;
+    color: var(--text-primary);
+}
+
+.metadata-code {
+    background: var(--background-primary);
+    border: 1px solid var(--background-tertiary);
+    border-radius: var(--border-radius-md);
+    padding: 1rem;
+    font-family: var(--font-family-mono);
+    font-size: var(--text-sm);
+    overflow-x: auto;
+    white-space: pre-wrap;
+    line-height: 1.4;
+}
+
+/* Branded Elements */
+.claude-brand-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: var(--font-semibold);
+    color: var(--primary-color);
+}
+
+.claude-brand-mark::before {
+    content: '🤖';
+    font-size: 1.2em;
+}
+
+.anthropic-brand-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: var(--font-medium);
+    color: var(--text-secondary);
+}
+
+.anthropic-brand-mark::before {
+    content: '⚡';
+    font-size: 1.2em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .social-card {
+        padding: 1.5rem;
+        margin: 1rem 0;
+    }
+    
+    .book-cover {
+        padding: 2rem;
+        aspect-ratio: 4/5;
+    }
+    
+    .book-cover-title {
+        font-size: 2rem;
+    }
+    
+    .book-cover-subtitle {
+        font-size: 1rem;
+    }
+    
+    .social-sharing {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .social-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .social-preview-twitter,
+    .social-preview-linkedin {
+        max-width: 100%;
+        margin: 1rem 0;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .social-card,
+    .social-sharing,
+    .social-preview-twitter,
+    .social-preview-linkedin {
+        display: none;
+    }
+    
+    .book-cover {
+        background: white;
+        color: black;
+        border: 2px solid black;
+    }
+    
+    .book-cover::before {
+        display: none;
+    }
+}
+
+/* Dark Mode Adjustments */
+:root[data-theme="dark"] .social-card {
+    background: var(--background-secondary);
+    border-color: var(--background-tertiary);
+}
+
+:root[data-theme="dark"] .social-preview-twitter {
+    background: var(--background-secondary);
+    border-color: var(--background-tertiary);
+}
+
+:root[data-theme="dark"] .social-preview-twitter-title {
+    color: var(--text-primary);
+}
+
+:root[data-theme="dark"] .social-preview-twitter-description,
+:root[data-theme="dark"] .social-preview-twitter-url {
+    color: var(--text-secondary);
+}
+
+:root[data-theme="dark"] .social-preview-linkedin {
+    background: var(--background-secondary);
+    border-color: var(--background-tertiary);
+}
+
+:root[data-theme="dark"] .social-preview-linkedin-title {
+    color: var(--text-primary);
+}
+
+:root[data-theme="dark"] .social-preview-linkedin-description,
+:root[data-theme="dark"] .social-preview-linkedin-url {
+    color: var(--text-secondary);
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .social-card {
+        border: 2px solid var(--text-primary);
+    }
+    
+    .book-cover {
+        border: 2px solid var(--text-primary);
+    }
+    
+    .social-btn {
+        border: 2px solid transparent;
+    }
+    
+    .social-btn:focus {
+        border-color: var(--text-primary);
+    }
+}
