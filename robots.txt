@@ -10,6 +10,12 @@ Disallow: /test-results/
 Disallow: /.github/
 Disallow: /.wrangler/
 Disallow: /assets/temp/
+Disallow: /server.log
+Disallow: /*.log
+Disallow: /package-lock.json
+Disallow: /package.json
+Disallow: /wrangler.toml
+Disallow: /_headers
 
 # Crawl delay for respectful crawling
 Crawl-delay: 1
