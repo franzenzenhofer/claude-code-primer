@@ -8,3 +8,50 @@ exclude = ["node_modules/**", ".git/**", "test-results/**", "*.log", "*.tar.gz",
 [[routes]]
 pattern = "claude-code-primer.franzai.com/*"
 zone_name = "franzai.com"
+
+# Security and performance configuration
+[env.production]
+name = "claude-code-primer"
+
+# Security headers (also defined in _headers file)
+[env.production.vars]
+SECURITY_HEADERS = "enabled"
+CSP_POLICY = "strict"
+HSTS_ENABLED = "true"
+
+# SSL/TLS Configuration
+[env.production.ssl]
+min_tls_version = "1.2"
+certificate_pack = "advanced"
+
+# Rate limiting configuration
+[env.production.rate_limiting]
+enabled = true
+requests_per_minute = 100
+burst_size = 200
+
+# Bot management
+[env.production.bot_management]
+enabled = true
+block_likely_bots = true
+challenge_likely_bots = true
+
+# DDoS protection
+[env.production.ddos_protection]
+enabled = true
+sensitivity = "high"
+
+# WAF (Web Application Firewall)
+[env.production.waf]
+enabled = true
+paranoia_level = "low"
+owasp_core_ruleset = true
+
+# Development environment
+[env.development]
+name = "claude-code-primer-dev"
+
+[env.development.vars]
+SECURITY_HEADERS = "enabled"
+CSP_POLICY = "relaxed"
+HSTS_ENABLED = "false"
