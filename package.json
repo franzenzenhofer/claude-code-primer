@@ -1,6 +1,6 @@
 {
   "name": "claude-code-primer",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Claude Code Primer - A Journey into AI-Assisted Development",
   "main": "index.html",
   "scripts": {
