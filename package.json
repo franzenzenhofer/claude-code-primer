@@ -17,7 +17,8 @@
     "perf:lighthouse": "lighthouse http://localhost:8000 --output=json --output-path=lighthouse-report.json",
     "perf:analyze": "npx webpack-bundle-analyzer dist/stats.json",
     "build:prod": "npm run perf:test && npm run test",
-    "deploy:perf": "npm run build:prod && wrangler pages deploy ."
+    "deploy:perf": "npm run build:prod && wrangler pages deploy .",
+    "simple": "node simple-converter.js"
   },
   "keywords": [
     "ai",
